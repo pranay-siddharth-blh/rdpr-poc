@@ -1,0 +1,319 @@
+# General knowledge about the Rural Development and Panchayat Raj (RDPR) Department and Karnataka's Panchayat Raj
+# system, used by the chatbot for "what is / tell me about ..." questions that are not about the data tables.
+#
+# Researched 2026-10-01 from rdpr.karnataka.gov.in (home page, About Us, menu), the Karnataka Treasuries (Khajane)
+# PRI module overview, and public reporting on Panchatantra 2.0. Each entry lists its `sources` for maintainers only:
+# the chatbot never shows sources, web addresses or "from the knowledge base" notes. Hand-curated, so NOT hash-locked;
+# restart the server after editing (it is cached in memory).
+#
+# Rules for editing:
+#   * Facts only from the sources named in the entry, or flagged `basis: general` for widely known facts.
+#   * Never name current office holders (ministers, secretaries, CEOs): they change. Point to the official website.
+#   * Official counts differ from the synthetic POC dataset (see `poc_dataset`); keep the two clearly apart.
+#
+# Entry fields: id, title, aliases (phrases that trigger the entry, longest match wins), answer (markdown), sources,
+# basis (site | news | general), facets (optional extra answers selected by a word in the question).
+
+meta:
+  version: 1
+  researched_on: "2026-10-01"
+  website: "https://rdpr.karnataka.gov.in"
+
+groups:
+  department:
+    - id: rdpr
+      title: Rural Development and Panchayat Raj Department
+      aliases: [rdpr, rdpr department, rural development and panchayat raj, rural development and panchayat raj department,
+                rdpr karnataka, panchayat raj department, rural development department, what is rdpr, about rdpr]
+      basis: site
+      sources: ["https://rdpr.karnataka.gov.in", "https://rdpr.karnataka.gov.in/57/about-us/kn"]
+      answer: |
+        **The Rural Development and Panchayat Raj Department (RDPR) is the Government of Karnataka department that looks
+        after rural development and the administration of the Panchayat Raj institutions in the state.**
+
+        It works through the three-tier Panchayat Raj system: Zilla Panchayats at the district level, Taluk Panchayats at
+        the taluk level and Gram Panchayats at the village level. The department's stated vision is the comprehensive
+        development of rural areas through strong Panchayat Raj institutions.
+
+        Its work covers rural employment (such as MGNREGS), rural drinking water and sanitation, rural connectivity,
+        village development programmes, and the digital systems that Gram Panchayats use for accounts, property tax and
+        staff records.
+      facets:
+        vision: |
+          **Vision:** comprehensive, all-round development of rural areas with strengthened Panchayat Raj institutions.
+        mission: |
+          **Mission:** the department lists four core objectives: empowering rural people, providing basic facilities to
+          the poor, ensuring accountable functioning of panchayats, and creating livelihood opportunities through
+          employment and self-employment schemes. Its published objectives also include ensuring 100 days of employment
+          per household, clean drinking water, strengthening local institutions and promoting transparent governance.
+        objectives: |
+          The department publishes thirteen objectives, ranging from poverty elimination and 100 days of employment per
+          household to clean drinking water, stronger local institutions and transparent governance.
+        website: |
+          The department's official website has sections for About Us, Acts and Documents, Recruitment, Tenders, Media and
+          Right to Information (RTI), and lists of the Chief Executive Officers of the Zilla Panchayats.
+
+    - id: rdpr_leadership
+      title: Who heads the department
+      aliases: [minister of rdpr, rdpr minister, who is the minister, who heads rdpr, principal secretary rdpr, secretary rdpr,
+                who is the secretary, ceo of zilla panchayat, who are the ceos]
+      basis: site
+      sources: ["https://rdpr.karnataka.gov.in"]
+      answer: |
+        **The department is headed by the Minister for Rural Development and Panchayat Raj, with a Principal Secretary or
+        Secretary and, in each district, a Chief Executive Officer of the Zilla Panchayat.**
+
+        Office holders change, so please see the official website of the department for the current names.
+
+    - id: rdpr_services_pages
+      title: RTI, tenders, recruitment and Acts on the RDPR website
+      aliases: [rti rdpr, rdpr rti, rdpr tenders, rdpr recruitment, rdpr acts, panchayat raj act document, where can i find rdpr documents,
+                rdpr website]
+      basis: site
+      sources: ["https://rdpr.karnataka.gov.in"]
+      answer: |
+        **The RDPR website carries the department's RTI information, tenders, recruitment notices, media releases and
+        the Acts and documents.** They are not part of the figures this assistant answers from; please use the website.
+
+  panchayat_raj:
+    - id: panchayat_raj_system
+      title: Three-tier Panchayat Raj system in Karnataka
+      aliases: [panchayat raj, panchayat raj system, three tier system, three-tier system, three tier panchayat raj,
+                what is panchayat raj, panchayati raj, pri, panchayat raj institutions, what are panchayat raj institutions]
+      basis: site
+      sources: ["https://khajane.karnataka.gov.in/new-page/PRI%20module%20overview/en", "https://rdpr.karnataka.gov.in"]
+      answer: |
+        **Karnataka has a three-tier Panchayat Raj system: Gram Panchayats at the village level, Taluk Panchayats at the
+        taluk level and Zilla Panchayats at the district level.**
+
+        The system was set up under the Karnataka Panchayat Raj Act, 1993. All three tiers are elected bodies; the Zilla
+        Panchayat is the apex institution at the district level. The Rural Development and Panchayat Raj Department
+        supports and supervises them.
+      facets:
+        act: |
+          The **Karnataka Panchayat Raj Act, 1993** established the three-tier Panchayat Raj system in the state. The
+          Acts and documents section of the RDPR website holds the legislation.
+
+    - id: gram_panchayat
+      title: Gram Panchayat
+      aliases: [gram panchayat, grama panchayat, gp, gram panchayath, what is a gram panchayat, village panchayat]
+      basis: site
+      sources: ["https://khajane.karnataka.gov.in/new-page/PRI%20module%20overview/en", "https://zpbelagavi.kar.nic.in/eng/gram-panchayat.aspx"]
+      answer: |
+        **A Gram Panchayat (GP) is the lowest tier of the Panchayat Raj system: the elected local body for a village or a
+        group of villages.**
+
+        A GP keeps the accounts of its scheme funds, collects local taxes and fees (such as property tax), employs its own
+        staff (for example the Panchayat Development Officer, bill collectors and water operators) and has an elected
+        President (Adhyaksha) and Vice-President (Upadhyaksha). GPs are grouped under a Taluk Panchayat and a Zilla Panchayat.
+      facets:
+        count: |
+          Official reports put the number of Gram Panchayats in Karnataka at roughly 6,000 (about 5,955 in recent reporting).
+          This assistant's data is a synthetic proof-of-concept set built on 6,099 GPs, 238 taluks and 31 zillas.
+
+    - id: taluk_panchayat
+      title: Taluk Panchayat
+      aliases: [taluk panchayat, taluka panchayat, tp, what is a taluk panchayat, taluk]
+      basis: site
+      sources: ["https://www.zpkarwar.kar.nic.in/talukpanchayat.html", "https://khajane.karnataka.gov.in/new-page/PRI%20module%20overview/en"]
+      answer: |
+        **The Taluk Panchayat (TP) is the middle tier of the Panchayat Raj system, at the taluk (block) level, between the
+        Gram Panchayats and the Zilla Panchayat.** Its members are directly elected, and the Executive Officer (EO) of the
+        Taluk Panchayat is the officer who approves staff registered by the Gram Panchayats in the HRMS.
+
+    - id: zilla_panchayat
+      title: Zilla Panchayat
+      aliases: [zilla panchayat, zilla panchayath, zp, what is a zilla panchayat, district panchayat, zilla]
+      basis: site
+      sources: ["https://zpuk.karnataka.gov.in/en", "https://rdpr.karnataka.gov.in"]
+      answer: |
+        **The Zilla Panchayat (ZP) is the apex tier of the Panchayat Raj system, at the district (zilla) level.** Each
+        Zilla Panchayat has a Chief Executive Officer, and the Taluk Panchayats and Gram Panchayats of the district come
+        under it. In this assistant's data, Karnataka has 31 zillas.
+
+    - id: elected_representatives
+      title: President, Vice-President and members
+      aliases: [adhyaksha, upadhyaksha, gp president, gram panchayat president, elected members, who runs a gram panchayat,
+                panchayat members, elected representatives]
+      basis: general
+      sources: ["https://rdpr.karnataka.gov.in"]
+      answer: |
+        **A Gram Panchayat is governed by elected members, who elect a President (Adhyaksha) and a Vice-President
+        (Upadhyaksha) from among themselves.** The Panchayat Development Officer (PDO) is the GP's chief executive
+        officer on the administrative side. The data held here counts, for each GP and year, the seats, the elected
+        members registered, and whether a President and Vice-President are registered.
+
+  systems:
+    - id: panchatantra
+      title: Panchatantra 2.0
+      aliases: [panchatantra, panchatantra 2.0, panchatantra 2, panchatantra software, panchatantra portal, panchatantra app,
+                what is panchatantra]
+      basis: news
+      sources: ["https://egov.eletsonline.com/2023/03/karnatakas-rdpr-department-pioneers-tech-solutions-for-rural-inclusion/",
+                "https://play.google.com/store/apps/details?id=com.ictinfracon.p2dept.p2_department_app"]
+      answer: |
+        **Panchatantra 2.0 is the RDPR Department's digital platform for Gram Panchayats: one system for accounts, property
+        tax, staff records, citizen services and meetings.**
+
+        It automates the accounting of GP schemes, receipts, expenditure and vouchers, digitises property tax collection,
+        offers citizen services such as property-related permissions, building and trade licences and online complaints,
+        and includes meeting management, HR and profile modules. It serves about 6,000 Gram Panchayats and was launched in
+        2023 as the successor of the earlier Panchatantra software. The Finance & Accounting, Revenue and HRMS figures in
+        this assistant mirror that portal.
+
+    - id: finance_accounting_module
+      title: Finance & Accounting module
+      aliases: [finance and accounting, finance & accounting, f&a module, accounting module, what is book closure, gp accounts]
+      basis: news
+      sources: ["https://egov.eletsonline.com/2023/03/karnatakas-rdpr-department-pioneers-tech-solutions-for-rural-inclusion/"]
+      answer: |
+        **The Finance & Accounting module keeps the books of every Gram Panchayat: receipts, expenditure and vouchers for
+        each scheme account, with book closure at the end of each month and year.**
+
+        This assistant can answer how many GPs have closed their books (by scheme, month, year, taluk or zilla), and the
+        opening balance, receipts, expenditure and closing balance of each scheme account.
+
+    - id: revenue_module
+      title: Revenue module
+      aliases: [revenue module, property tax module, what is the revenue module, gp revenue, property tax]
+      basis: news
+      sources: ["https://egov.eletsonline.com/2023/03/karnatakas-rdpr-department-pioneers-tech-solutions-for-rural-inclusion/"]
+      answer: |
+        **The Revenue module tracks the taxes and fees a Gram Panchayat raises, mainly property tax: the demand, the
+        collection and the balance still to be collected, with online collection.**
+
+        This assistant can answer demand, collection, arrears and balance by revenue head and property type, the monthly
+        collection, and the number of properties, by GP, taluk or zilla.
+
+    - id: hrms_module
+      title: HRMS module
+      aliases: [hrms module, hrms, what is hrms, human resource module, gp staff system]
+      basis: news
+      sources: ["https://egov.eletsonline.com/2023/03/karnatakas-rdpr-department-pioneers-tech-solutions-for-rural-inclusion/"]
+      answer: |
+        **The HRMS module handles the Gram Panchayat workforce: registration of staff and elected representatives,
+        approval by the Executive Officer, and monthly salary bills.**
+
+        This assistant can answer staff counts by designation, registrations approved, pending or rejected at the EO,
+        elected members and seats, and how far each month's salary bills got (generated, signed, processed by the bank,
+        paid or rejected). It holds counts only, never details of individual people.
+
+    - id: related_systems
+      title: Other RDPR systems
+      aliases: [e-swathu, eswathu, ngsk, ngsk 2.0, sakala, other rdpr systems, rdpr software, rdpr applications]
+      basis: news
+      sources: ["https://egov.eletsonline.com/2023/03/karnatakas-rdpr-department-pioneers-tech-solutions-for-rural-inclusion/"]
+      answer: |
+        **Besides Panchatantra, the department's reported systems include e-Swathu (property management software,
+        implemented in 2013), NGSK 2.0 (work monitoring with geotagging, pre-planning, e-procurement integration and
+        online billing) and Sakala (timely delivery of government services).**
+
+        These are not part of the figures this assistant answers from.
+      facets:
+        eswathu: "**e-Swathu is the property management software of the RDPR Department, implemented in 2013.**"
+        ngsk: "**NGSK 2.0 is the department's work-monitoring software, with geotagging, pre-planning, e-procurement integration and online billing.**"
+        sakala: "**Sakala is the Karnataka Government's service guarantee, which fixes the time within which government services must be delivered.**"
+
+    - id: treasury_heads
+      title: Accounting heads of the PRI accounts
+      aliases: [head of account, heads of account, 8448, 2202, mpas, deposit account, consolidated fund, pri module, khajane pri]
+      basis: site
+      sources: ["https://khajane.karnataka.gov.in/new-page/PRI%20module%20overview/en"]
+      answer: |
+        **In the Karnataka Treasuries (Khajane) PRI module, Panchayat Raj funds are classified by head of account:
+        local deposits sit in the 8448 series, money from state and central schemes in the Consolidated Fund 2202 series,
+        and funds received from the Government of India and the Government of Karnataka for schemes are booked as MPAS receipts.**
+
+  schemes:
+    - id: rural_schemes
+      title: Major rural development programmes
+      aliases: [mgnrega, mgnregs, nrega, rural employment guarantee, suvarna gramodaya, gram vikasa, rural drinking water, rural connectivity,
+                pmgsy, jal jeevan mission, schemes of rdpr, rdpr schemes, what schemes does rdpr run]
+      basis: site
+      sources: ["https://rdpr.karnataka.gov.in", "https://egov.eletsonline.com/2023/03/karnatakas-rdpr-department-pioneers-tech-solutions-for-rural-inclusion/"]
+      answer: |
+        **The RDPR website refers to the Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGS), rural drinking
+        water and sanitation programmes, Suvarna Gramodaya, rural connectivity and road schemes (such as PMGSY) and
+        Gram Vikasa programmes; related reporting also mentions the Jal Jeevan Mission.**
+
+        This assistant's data holds Gram Panchayat finance, revenue and staff records only, so it cannot give MGNREGS,
+        works or scheme-progress figures.
+
+    - id: gp_scheme_accounts
+      title: Scheme accounts a Gram Panchayat keeps
+      aliases: [scheme accounts, what scheme accounts does a gp keep, list of schemes, scheme books, gp schemes, fund accounts]
+      basis: general
+      sources: ["https://rdpr.karnataka.gov.in"]
+      answer: |
+        **A Gram Panchayat keeps a separate account book for each funding source. In this data there are thirteen:**
+        Rashtriya Gram Swaraj Abhiyan, Library Account, Statutory Grants (GP Staff Salary), Bapuji Seva Kendra, SC/ST Funds 25%,
+        Physically Disabled 3%, Chief Minister Grama Vikasa, Statutory Grants (ESCROW), Village Water Supply and Sanitation
+        Committee, Swachh Bharat Mission-Gramin, Own Resource Funds, Fourteen Finance Commission Grants and Fifteen Finance
+        Commission Grants.
+
+  karnataka:
+    - id: karnataka_state
+      title: Karnataka
+      aliases: [karnataka, about karnataka, karnataka state, what is karnataka, capital of karnataka, official language of karnataka]
+      basis: general
+      sources: ["https://www.karnataka.gov.in"]
+      answer: |
+        **Karnataka is a state in south-western India. Its capital is Bengaluru and its official language is Kannada.**
+
+        The state was formed on 1 November 1956 as Mysore State and renamed Karnataka in 1973. It has 31 districts (zillas)
+        grouped into four revenue divisions, with the local self-government of its villages, taluks and districts carried by
+        the Panchayat Raj system and its towns and cities by urban local bodies.
+      facets:
+        capital: "**The capital of Karnataka is Bengaluru.**"
+        language: "**The official language of Karnataka is Kannada.**"
+        districts: "**Karnataka has 31 districts (called zillas in Panchayat Raj). In this assistant's data the 31 zillas contain 238 taluks.**"
+
+    - id: karnataka_divisions
+      title: Revenue divisions of Karnataka
+      aliases: [revenue divisions, divisions of karnataka, bengaluru division, mysuru division, belagavi division, kalaburagi division]
+      basis: general
+      sources: ["https://www.karnataka.gov.in"]
+      answer: |
+        **Karnataka's districts are grouped into four revenue divisions: Bengaluru, Mysuru, Belagavi and Kalaburagi.**
+        This assistant reports by zilla, taluk and Gram Panchayat rather than by division.
+
+  data:
+    - id: poc_dataset
+      title: About the data in this assistant
+      aliases: [about this data, about the data, what data do you have, what data is this, is this real data, is the data real,
+                data period, data coverage, what period does the data cover, how many gps are there in the data, how current is the data]
+      basis: general
+      sources: ["project documentation (HANDOFF.md)"]
+      answer: |
+        **The figures here come from a synthetic proof-of-concept dataset that mirrors the Panchatantra 2.0 portal: they are
+        not official records.**
+
+        It covers Finance & Accounting, Revenue and HRMS for 6,099 Gram Panchayats in 238 taluks and 31 zillas, from April
+        2022 to 30 September 2026. Financial years run April to March, and 2026-27 is partly complete (April to September 2026).
+        Official reports count slightly fewer Gram Panchayats (about 6,000), so totals will not match official statistics.
+
+    - id: what_can_i_ask
+      title: What this assistant can answer
+      aliases: [what can you answer, what questions can i ask, what can i ask, sample questions, example questions, help]
+      basis: general
+      sources: ["project documentation"]
+      answer: |
+        **I can answer questions about Gram Panchayat finance, revenue and staff data, by zilla, taluk or GP and by financial year or month.**
+
+        - **Finance & Accounting:** books closed by scheme, month and year; scheme receipts, expenditure and balances.
+        - **Revenue:** demand, collection, arrears and balance; by tax and property type; monthly collection; collection percentage.
+        - **HRMS:** staff by designation, EO approvals pending or rejected, elected members and seats, salary bills and bank rejections.
+
+        Try: "Which five zillas collected the most revenue in 2025-26?", "How many GPs closed all their books in 2024-25?" or
+        "Which taluks have the most staff registrations pending at the EO?"
+
+glossary_extra:
+  - term: Panchayat Development Officer
+    aliases: [pdo, panchayat development officer]
+    plain: "The administrative head of a Gram Panchayat, who runs its day-to-day office, keeps its accounts and signs its bills."
+  - term: Executive Officer
+    aliases: [eo, executive officer, taluk panchayat executive officer]
+    plain: "The Executive Officer of the Taluk Panchayat, who approves the staff registered by the Gram Panchayats of the taluk."
+  - term: Gram Sabha
+    aliases: [gram sabha, grama sabha]
+    plain: "The assembly of all registered voters of a Gram Panchayat area, which meets to discuss the GP's plans, budget and beneficiary lists."

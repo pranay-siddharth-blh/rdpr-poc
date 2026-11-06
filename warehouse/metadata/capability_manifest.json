@@ -1,0 +1,168 @@
+{
+ "_purpose": "Topics the data does / does not hold. status loaded / not_loaded; build fails if a loaded topic's tables are empty.",
+ "capabilities": [
+  {
+   "topic": "finance_closure",
+   "status": "loaded",
+   "tables": [
+    "mart_fact_gp_year_closure",
+    "mart_fact_gp_month_closure",
+    "mart_fact_taluk_daybook_closure",
+    "mart_agg_taluk_scheme_fy"
+   ],
+   "keywords": [],
+   "note": "Book closure by scheme: yearly and monthly by GP, daily by taluk, April 2022 to September 2026."
+  },
+  {
+   "topic": "finance_accounts",
+   "status": "loaded",
+   "tables": [
+    "mart_fact_gp_scheme_financials"
+   ],
+   "keywords": [],
+   "note": "Monthly opening balance, receipts, expenditure and closing balance of each scheme account of every GP."
+  },
+  {
+   "topic": "revenue",
+   "status": "loaded",
+   "tables": [
+    "mart_fact_gp_dcb",
+    "mart_fact_gp_fee_type",
+    "mart_fact_gp_monthly_collection",
+    "mart_fact_gp_demand_by_property_type",
+    "mart_fact_gp_property_counts",
+    "mart_agg_taluk_fee_type_fy",
+    "mart_agg_taluk_property_fy"
+   ],
+   "keywords": [],
+   "note": "Demand, collection and balance by GP, revenue head and property type for FY 2022-23 to 2026-27, plus monthly collection and property counts."
+  },
+  {
+   "topic": "hrms",
+   "status": "loaded",
+   "tables": [
+    "mart_fact_gp_eo_approval",
+    "mart_fact_gp_er_registration",
+    "mart_fact_taluk_salary_bills",
+    "mart_fact_taluk_staff",
+    "mart_agg_taluk_month"
+   ],
+   "keywords": [],
+   "note": "GP staff headcount by designation, EO approval status, elected-representative registration and monthly salary-bill progress (taluk level)."
+  },
+  {
+   "topic": "budget_plan",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "budget",
+    "action plan",
+    "annual plan",
+    "plan outlay",
+    "budget estimate"
+   ],
+   "note": "Budgets and annual action plans are not part of this data."
+  },
+  {
+   "topic": "audit",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "audit",
+    "audit paragraph",
+    "audit report",
+    "cag"
+   ],
+   "note": "Audit records and audit paragraphs are not part of this data."
+  },
+  {
+   "topic": "works_mgnrega",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "mgnrega",
+    "job card",
+    "job cards",
+    "muster roll",
+    "work orders",
+    "civil works",
+    "assets created",
+    "person days"
+   ],
+   "note": "MGNREGA, works and asset records are not part of this data."
+  },
+  {
+   "topic": "housing_schemes",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "pmay",
+    "pradhan mantri awas",
+    "awas yojana",
+    "houses built",
+    "houses constructed",
+    "housing scheme",
+    "basava vasati",
+    "ambedkar vasati",
+    "rural housing",
+    "beneficiaries"
+   ],
+   "note": "Housing schemes (PMAY, Basava and Ambedkar Vasati) and their beneficiaries are not part of this data."
+  },
+  {
+   "topic": "demographics",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "population",
+    "households",
+    "literacy",
+    "sq km",
+    "area of the gp"
+   ],
+   "note": "Population and demographic data are not part of this data."
+  },
+  {
+   "topic": "grievance_meetings",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "grievance",
+    "grievances",
+    "complaint",
+    "complaints",
+    "gram sabha",
+    "meetings held"
+   ],
+   "note": "Grievances, complaints and Gram Sabha meetings are not part of this data."
+  },
+  {
+   "topic": "taxpayer_records",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "taxpayer",
+    "taxpayers",
+    "assessee",
+    "property owner",
+    "property owners",
+    "tax receipt",
+    "individual property"
+   ],
+   "note": "Individual taxpayer or property records are not part of this data; collection is held per GP, revenue head and property type."
+  },
+  {
+   "topic": "daily_collection",
+   "status": "not_loaded",
+   "tables": [],
+   "keywords": [
+    "daily collection",
+    "collection per day",
+    "day wise collection",
+    "day-wise collection",
+    "collected on"
+   ],
+   "note": "Revenue collection is held monthly, not daily."
+  }
+ ]
+}

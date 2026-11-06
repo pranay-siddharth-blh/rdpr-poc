@@ -1,0 +1,18 @@
+# secrets: the model gateway key lives only in ai_app/.env (copy ai_app/.env.example)
+.env
+ai_app/.env
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# warehouse build by-products (rebuild with python warehouse/build_warehouse.py)
+DB/rdpr_star.building.sqlite
+DB/rdpr_star.previous.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# stress-test output (re-run with python ai_app/tests/run_stress.py)
+ai_app/tests/stress_report.json

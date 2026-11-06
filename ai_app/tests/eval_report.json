@@ -1,0 +1,187 @@
+{
+ "passed": 15,
+ "total": 15,
+ "results": [
+  {
+   "id": 1,
+   "q": "How many GPs in Mysuru zilla collected less than 20% of their total demand in FY 2024-25?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "59"
+   ],
+   "missing": [],
+   "answer": "**In Mysuru zilla during FY 2024-25, 59 Gram Panchayats collected less than 20% of their total demand.**",
+   "secs": 1.2
+  },
+  {
+   "id": 2,
+   "q": "Which GP in Badami taluk had the highest collection percentage in 2024-25, and what was it?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "47.31"
+   ],
+   "missing": [],
+   "answer": "**The GP Jalihal in Badami taluk had the highest collection percentage of 47.31% in FY 2024-25.**",
+   "secs": 0.9
+  },
+  {
+   "id": 3,
+   "q": "How many GPs in Karnataka closed none of their scheme year books in FY 2024-25?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "40"
+   ],
+   "missing": [],
+   "answer": "**In FY 2024-25, 40 Gram Panchayats closed none of their scheme year books.**",
+   "secs": 0.8
+  },
+  {
+   "id": 4,
+   "q": "Which taluk had the most staff registrations waiting at the EO in FY 2025-26, and how many?",
+   "status": "PASS",
+   "route": "report:eo_backlog",
+   "expected": [
+    "4"
+   ],
+   "missing": [],
+   "answer": "**113 staff registrations were waiting for the EO in Karnataka in FY 2025-26; the longest queue is in Bagalkot taluk (4).**\n\n48,475 registrations had been approved. The table lists the taluks with the most pending.",
+   "secs": 0.1
+  },
+  {
+   "id": 5,
+   "q": "How many GPs had no president registered in FY 2025-26?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "0"
+   ],
+   "missing": [],
+   "answer": "**In FY 2025-26, 0 GPs had no president registered.**",
+   "secs": 1.3
+  },
+  {
+   "id": 6,
+   "q": "Under which scheme did GPs in Mysuru zilla spend the most in FY 2024-25, and how much?",
+   "status": "PASS",
+   "route": "breakdown:scheme:expenditure",
+   "expected": [
+    "371,444,912"
+   ],
+   "missing": [],
+   "answer": "**Fifteen Finance Commission Grants has the highest scheme expenditure in Mysuru zilla in FY 2024-25: ₹37.14 crore.**\n\nThat is 22.1% of the ₹168.32 crore total across 12 schemes; Library Account is smallest at ₹1.79 crore.",
+   "secs": 0.1
+  },
+  {
+   "id": 7,
+   "q": "How many taluks in Kalaburagi zilla collected more than 30% of their demand in FY 2024-25?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "3"
+   ],
+   "missing": [],
+   "answer": "**In FY 2024-25, 3 taluks in Kalaburagi zilla collected more than 30% of their demand.**",
+   "secs": 0.9
+  },
+  {
+   "id": 8,
+   "q": "What is the gap between total demand and total collection for Udupi zilla in FY 2023-24?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "1,348,518,449.41"
+   ],
+   "missing": [],
+   "answer": "**The gap between total demand and total collection for Udupi zilla in FY 2023-24 is ₹134.85 crore.**",
+   "secs": 1.1
+  },
+  {
+   "id": 9,
+   "q": "How many GPs in Hassan zilla have more than 5,000 properties in FY 2025-26?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "12"
+   ],
+   "missing": [],
+   "answer": "**In Hassan zilla for FY 2025-26, 12 Gram Panchayats have more than 5,000 properties.**",
+   "secs": 0.8
+  },
+  {
+   "id": 10,
+   "q": "What share of all GP seats were filled by elected members in Belagavi zilla in FY 2025-26?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "98.73"
+   ],
+   "missing": [],
+   "answer": "**In Belagavi zilla during FY 2025-26, 11,694 out of 11,844 seats were filled by elected members, representing a 98.73% share.**",
+   "secs": 1.2
+  },
+  {
+   "id": 11,
+   "q": "Which zilla rejected the largest number of staff registrations at the EO in FY 2024-25, and how many?",
+   "status": "PASS",
+   "route": "breakdown:zilla:staff_rejected_by_eo",
+   "expected": [
+    "47"
+   ],
+   "missing": [],
+   "answer": "**Belagavi has the highest staff registrations rejected by the EO in FY 2024-25: 47.**\n\nKodagu is lowest at 7, across 31 zillas.",
+   "secs": 0.1
+  },
+  {
+   "id": 12,
+   "q": "How many GPs in Tumakuru zilla had an outstanding balance above 50 lakh in FY 2025-26?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "137"
+   ],
+   "missing": [],
+   "answer": "**In FY 2025-26, 137 GPs in Tumakuru zilla had an outstanding balance above 50 lakh.**",
+   "secs": 0.8
+  },
+  {
+   "id": 13,
+   "q": "What was the total mobile tower tax demand across Karnataka in FY 2024-25, and how much of it was collected?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "1,252,068,931.44",
+    "374,022,739.19"
+   ],
+   "missing": [],
+   "answer": "**The total Mobile Tower Tax demand across Karnataka in FY 2024-25 was ₹125.21 crore, and the amount collected was ₹37.40 crore.**",
+   "secs": 1.2
+  },
+  {
+   "id": 14,
+   "q": "How many GPs in Dakshina Kannada closed every scheme book in FY 2025-26?",
+   "status": "PASS",
+   "route": "llm",
+   "expected": [
+    "20"
+   ],
+   "missing": [],
+   "answer": "**In Dakshina Kannada, 20 GPs closed every scheme book in FY 2025-26.**",
+   "secs": 0.7
+  },
+  {
+   "id": 15,
+   "q": "What was the closing balance of all scheme accounts of GPs in Mandya zilla at the end of March 2025?",
+   "status": "PASS",
+   "route": "metric:closing_balance",
+   "expected": [
+    "687,349,258"
+   ],
+   "missing": [],
+   "answer": "**Closing balance of scheme accounts for Mandya zilla in March 2025 was ₹68.73 crore.**",
+   "secs": 0.1
+  }
+ ]
+}

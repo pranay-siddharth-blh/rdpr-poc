@@ -1,0 +1,654 @@
+{
+ "_purpose": "Every KPI: key, label, unit, kind, synonyms and the SUM/SUM expression per period kind. Exported to semantic_layer.json; the metric lookup and the SQL guard read it.",
+ "metrics": [
+  {
+   "key": "total_collection",
+   "label": "total collection",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": true,
+   "synonyms": [
+    "total collection",
+    "collection",
+    "collections",
+    "collected",
+    "revenue collected",
+    "revenue collection",
+    "tax collected",
+    "tax collection",
+    "revenue",
+    "amount collected"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(total_collection)"
+    },
+    "month": {
+     "table": "mart_fact_gp_monthly_collection",
+     "expr": "SUM(collection_amount)"
+    }
+   },
+   "with_fee_type": {
+    "fy": {
+     "table": "mart_fact_gp_fee_type",
+     "expr": "SUM(total_collection)"
+    },
+    "month": {
+     "table": "mart_fact_gp_monthly_collection",
+     "expr": "SUM(collection_amount)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(total_collection)"
+    }
+   }
+  },
+  {
+   "key": "year_demand",
+   "label": "current-year demand",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": true,
+   "synonyms": [
+    "current demand",
+    "current year demand",
+    "year demand",
+    "demand raised",
+    "current-year demand",
+    "fresh demand"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(year_demand)"
+    }
+   },
+   "with_fee_type": {
+    "fy": {
+     "table": "mart_fact_gp_fee_type",
+     "expr": "SUM(year_demand)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(year_demand)"
+    }
+   }
+  },
+  {
+   "key": "total_demand",
+   "label": "total demand (arrears plus current-year demand)",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "total demand",
+    "demand"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(total_demand)"
+    }
+   },
+   "with_fee_type": {
+    "fy": {
+     "table": "mart_fact_gp_fee_type",
+     "expr": "SUM(total_demand)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(total_demand)"
+    }
+   }
+  },
+  {
+   "key": "arrears",
+   "label": "arrears",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "arrears",
+    "arrear",
+    "opening dues",
+    "dues carried forward"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(arrears)"
+    }
+   },
+   "with_fee_type": {
+    "fy": {
+     "table": "mart_fact_gp_fee_type",
+     "expr": "SUM(arrears)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(arrears)"
+    }
+   }
+  },
+  {
+   "key": "adjustments",
+   "label": "adjustments",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": true,
+   "synonyms": [
+    "adjustments",
+    "adjustment",
+    "write offs",
+    "write-offs"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(adjustments)"
+    }
+   }
+  },
+  {
+   "key": "balance",
+   "label": "outstanding balance",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "outstanding balance",
+    "outstanding",
+    "balance",
+    "revenue balance",
+    "pending dues",
+    "dues outstanding",
+    "balance to be collected",
+    "unpaid"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(balance)"
+    }
+   },
+   "with_fee_type": {
+    "fy": {
+     "table": "mart_fact_gp_fee_type",
+     "expr": "SUM(balance)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(balance)"
+    }
+   }
+  },
+  {
+   "key": "collection_pct",
+   "label": "collection percentage",
+   "unit": "%",
+   "kind": "ratio",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "collection percentage",
+    "collection efficiency",
+    "collection rate",
+    "collection %",
+    "collection percent",
+    "collection per cent",
+    "collection pct",
+    "percentage collected",
+    "percent collected",
+    "percentage of collection",
+    "percent of collection",
+    "collection ratio",
+    "recovery rate"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_dcb",
+     "expr": "SUM(total_collection)*100.0/NULLIF(SUM(total_demand),0)"
+    }
+   },
+   "with_fee_type": {
+    "fy": {
+     "table": "mart_fact_gp_fee_type",
+     "expr": "SUM(total_collection)*100.0/NULLIF(SUM(total_demand),0)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(total_collection)*100.0/NULLIF(SUM(total_demand),0)"
+    }
+   }
+  },
+  {
+   "key": "number_of_properties",
+   "label": "number of properties",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "number of properties",
+    "properties",
+    "property count",
+    "how many properties"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_property_counts",
+     "expr": "SUM(number_of_properties)"
+    }
+   },
+   "with_property_type": {
+    "fy": {
+     "table": "mart_fact_gp_demand_by_property_type",
+     "expr": "SUM(number_of_properties)"
+    }
+   }
+  },
+  {
+   "key": "books_closed_pct",
+   "label": "share of scheme books closed",
+   "unit": "%",
+   "kind": "ratio",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "books closed",
+    "book closure",
+    "closure percentage",
+    "closure percent",
+    "closure rate",
+    "closure %",
+    "percentage of books closed",
+    "percent of books closed",
+    "closure of books",
+    "books closure",
+    "closure"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_year_closure",
+     "expr": "SUM(is_closed)*100.0/NULLIF(COUNT(*),0)"
+    },
+    "month": {
+     "table": "mart_fact_gp_month_closure",
+     "expr": "SUM(is_closed)*100.0/NULLIF(COUNT(*),0)"
+    }
+   }
+  },
+  {
+   "key": "gps_all_books_closed",
+   "label": "GPs that closed all their books",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "gps closed all books",
+    "gps with all books closed",
+    "gps that closed all books",
+    "all books closed",
+    "closed all their books",
+    "gps closed all their books"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_summary_gp_year",
+     "expr": "SUM(all_books_closed)"
+    }
+   }
+  },
+  {
+   "key": "receipts",
+   "label": "scheme receipts",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": true,
+   "synonyms": [
+    "scheme receipts",
+    "receipts",
+    "funds received",
+    "grants received",
+    "money received"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_scheme_financials",
+     "expr": "SUM(receipts)"
+    },
+    "month": {
+     "table": "mart_fact_gp_scheme_financials",
+     "expr": "SUM(receipts)"
+    }
+   }
+  },
+  {
+   "key": "expenditure",
+   "label": "scheme expenditure",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": true,
+   "synonyms": [
+    "expenditure",
+    "expenses",
+    "spending",
+    "spent",
+    "expense",
+    "spend",
+    "spends"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_scheme_financials",
+     "expr": "SUM(expenditure)"
+    },
+    "month": {
+     "table": "mart_fact_gp_scheme_financials",
+     "expr": "SUM(expenditure)"
+    }
+   }
+  },
+  {
+   "key": "closing_balance",
+   "label": "closing balance of scheme accounts",
+   "unit": "INR",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "closing balance",
+    "scheme balance",
+    "account balance",
+    "balance in scheme accounts",
+    "funds available"
+   ],
+   "variants": {
+    "month": {
+     "table": "mart_fact_gp_scheme_financials",
+     "expr": "SUM(closing_balance)"
+    }
+   }
+  },
+  {
+   "key": "staff_active",
+   "label": "active staff",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "taluk",
+   "across_periods": false,
+   "snapshot": true,
+   "synonyms": [
+    "active staff",
+    "number of staff",
+    "staff strength",
+    "headcount",
+    "staff count",
+    "employees",
+    "how many staff",
+    "gp staff",
+    "staff"
+   ],
+   "variants": {
+    "none": {
+     "table": "mart_fact_taluk_staff",
+     "expr": "SUM(staff_count)",
+     "filter": "employment_status = 'Active'"
+    }
+   }
+  },
+  {
+   "key": "staff_approved_by_eo",
+   "label": "staff approved by the EO",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "approved by eo",
+    "staff approved",
+    "approved by the eo",
+    "eo approved",
+    "staff approved by eo"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_eo_approval",
+     "expr": "SUM(staff_approved_by_eo)"
+    }
+   }
+  },
+  {
+   "key": "staff_pending_at_eo",
+   "label": "staff registrations pending at the EO",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "pending at eo",
+    "pending approval",
+    "pending at the eo",
+    "awaiting eo approval",
+    "approval pending",
+    "pending with eo",
+    "staff pending"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_eo_approval",
+     "expr": "SUM(staff_approval_pending_at_eo)"
+    }
+   }
+  },
+  {
+   "key": "staff_rejected_by_eo",
+   "label": "staff registrations rejected by the EO",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "rejected by eo",
+    "rejected by the eo",
+    "eo rejected",
+    "registrations rejected"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_eo_approval",
+     "expr": "SUM(staff_registrations_rejected_by_eo)"
+    }
+   }
+  },
+  {
+   "key": "staff_sent_to_eo",
+   "label": "staff registrations sent to the EO",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "sent to eo",
+    "sent to the eo",
+    "registrations sent"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_eo_approval",
+     "expr": "SUM(staff_registrations_sent_to_eo)"
+    }
+   }
+  },
+  {
+   "key": "elected_members",
+   "label": "elected members registered",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "elected members",
+    "elected representatives",
+    "members registered",
+    "members elected"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_er_registration",
+     "expr": "SUM(total_elected_members)"
+    }
+   }
+  },
+  {
+   "key": "total_seats",
+   "label": "seats in GP bodies",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "total seats",
+    "seats",
+    "gp seats",
+    "number of seats"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_er_registration",
+     "expr": "SUM(total_seats)"
+    }
+   }
+  },
+  {
+   "key": "presidents",
+   "label": "GPs with a President registered",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "gp",
+   "across_periods": false,
+   "synonyms": [
+    "presidents registered",
+    "adhyaksha registered",
+    "presidents",
+    "adhyakshas"
+   ],
+   "variants": {
+    "fy": {
+     "table": "mart_fact_gp_er_registration",
+     "expr": "SUM(total_adhyaksha_president)"
+    }
+   }
+  },
+  {
+   "key": "salary_paid",
+   "label": "staff whose salary was paid",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "taluk",
+   "across_periods": false,
+   "synonyms": [
+    "salary paid",
+    "staff paid",
+    "paid salary",
+    "salaries paid",
+    "staff whose salary was paid"
+   ],
+   "variants": {
+    "month": {
+     "table": "mart_fact_taluk_salary_bills",
+     "expr": "SUM(number_of_staff_salary_paid)"
+    }
+   }
+  },
+  {
+   "key": "salary_rejected",
+   "label": "staff whose salary the bank rejected",
+   "unit": "count",
+   "kind": "sum",
+   "geo": "taluk",
+   "across_periods": false,
+   "synonyms": [
+    "salary rejected",
+    "rejected by bank",
+    "rejected by the bank",
+    "bank rejected",
+    "salary rejections",
+    "salaries rejected"
+   ],
+   "variants": {
+    "month": {
+     "table": "mart_fact_taluk_salary_bills",
+     "expr": "SUM(number_of_staff_salary_rejected_by_bank)"
+    }
+   }
+  },
+  {
+   "key": "gp_count",
+   "label": "number of GPs",
+   "unit": "count",
+   "kind": "count",
+   "geo": "gp",
+   "across_periods": true,
+   "static": true,
+   "synonyms": [
+    "number of gps",
+    "how many gps",
+    "gram panchayats",
+    "number of gram panchayats",
+    "how many gram panchayats",
+    "count of gps",
+    "total gps"
+   ],
+   "variants": {
+    "none": {
+     "table": "mart_dim_gp",
+     "expr": "COUNT(*)"
+    }
+   }
+  },
+  {
+   "key": "taluk_count",
+   "label": "number of taluks",
+   "unit": "count",
+   "kind": "count",
+   "geo": "taluk",
+   "across_periods": true,
+   "static": true,
+   "synonyms": [
+    "number of taluks",
+    "how many taluks",
+    "count of taluks",
+    "total taluks"
+   ],
+   "variants": {
+    "none": {
+     "table": "mart_dim_taluk",
+     "expr": "COUNT(*)"
+    }
+   }
+  }
+ ]
+}

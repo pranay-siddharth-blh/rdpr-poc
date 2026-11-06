@@ -1,0 +1,8 @@
+{
+ "_purpose": "SHA-256 of the files the chatbot only reads; written by semantic/build_semantic_layer.py. ai_app/tests/test_integrity.py re-hashes them.",
+ "files": {
+  "DB/rdpr_star.sqlite": "d026ddb0f95be892259352571d8ddd2b5119598d10cb7443a2142708e764045a",
+  "semantic/semantic_layer.json": "00627ce01bed06509ae451bba95de059d542d578967c45b0d54fa860ba1664a5",
+  "semantic/example_queries.sql": "28ac4113e026d405892a866f5dc9fc544850d94c4a5579c46085f7fbe0712d7f"
+ }
+}

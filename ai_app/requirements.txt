@@ -1,0 +1,10 @@
+fastapi>=0.110
+uvicorn>=0.29
+httpx>=0.27
+pydantic>=2.6
+pydantic-settings>=2.2
+PyYAML>=6.0
+openpyxl>=3.1
+numpy>=1.26       # voice: how much of a recording is speech (app/voice_guard.py); without it that guard switches off
+pytest>=8.0
+pytest-asyncio>=0.23

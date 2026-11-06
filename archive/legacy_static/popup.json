@@ -1,0 +1,21 @@
+{
+  "_help": "Welcome popup shown when the dashboard opens (like the popup on rdpr.karnataka.gov.in). Edit freely. Set 'image' to a banner picture URL under /static to show a poster instead of the built-in banner. enabled=false switches it off.",
+  "enabled": true,
+  "auto_close_seconds": 20,
+  "show_once_per_session": true,
+  "image": "",
+  "kicker": "Rural Development & Panchayat Raj · Government of Karnataka",
+  "title": "Welcome to the Panchayat Raj Data Assistant",
+  "text": "See how Karnataka's Gram Panchayats are performing on revenue, accounts and staff, then ask any question in plain English and get an answer with the exact figures.",
+  "tiles": [
+    {"icon": "₹", "title": "Revenue", "text": "Demand, collection, arrears and balance by tax and property type"},
+    {"icon": "▤", "title": "Finance & Accounting", "text": "Book closure, scheme receipts, expenditure and balances"},
+    {"icon": "☰", "title": "HRMS", "text": "Staff, EO approvals, elected members and salary bills"}
+  ],
+  "facts": ["6,099 Gram Panchayats", "238 taluks", "31 zillas", "Apr 2022 – Sep 2026"],
+  "buttons": [
+    {"label": "Explore the dashboard", "action": "close", "style": "primary"},
+    {"label": "Ask AI a question →", "href": "/chat", "style": "ghost"}
+  ],
+  "try": ["Which five zillas collected the most revenue in 2025-26?", "How many GPs closed all their books in 2024-25?", "Which taluks have the most staff pending at the EO?"]
+}

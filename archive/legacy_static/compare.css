@@ -1,0 +1,15 @@
+.btn { background: var(--navy); color: #fff; border: 1px solid var(--navy); border-radius: var(--radius); padding: 9px 20px; cursor: pointer; font-weight: 600; align-self: end; transition: background-color .12s ease; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn { color: #0c1220; } }
+.verdict { background: linear-gradient(120deg, var(--navy), #5758bb); color: #fff; border-radius: var(--radius-lg); padding: 18px 22px; display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; box-shadow: var(--shadow); }
+.verdict h2 { color: #fff; font-size: 22px; }
+.verdict .sub { color: #dfe4ff; font-size: 14px; margin-top: 2px; }
+.score { display: flex; gap: 12px; align-items: center; font: 700 30px "Montserrat", sans-serif; }
+.score small { font: 12px "Inter", sans-serif; display: block; color: #dfe4ff; }
+.score .sep { opacity: .5; }
+table.cmp { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 14px; }
+table.cmp th { background: var(--gold-soft); padding: 9px 10px; text-align: right; }
+table.cmp th:first-child { text-align: left; }
+table.cmp td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
+table.cmp td:first-child { text-align: left; color: var(--muted); }
+table.cmp td.win { font-weight: 700; color: var(--green); background: rgba(46,139,87,.08); }
+table.cmp td.win::after { content: " ▲"; font-size: 11px; }

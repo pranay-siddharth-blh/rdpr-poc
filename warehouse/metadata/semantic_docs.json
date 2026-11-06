@@ -1,0 +1,1245 @@
+{
+ "_purpose": "Hand-written documentation of every mart_* table: group, grain and purpose per table, unit / additivity / meaning per column. build_warehouse.py loads it into semantic_table_doc / semantic_column_doc and FAILS if a mart column is undocumented.",
+ "data_period": {
+  "data_from": "2022-04-01",
+  "data_to": "2026-09-30",
+  "data_as_of": "2026-09-30",
+  "latest_full_fy": "2025-26",
+  "partial_fy": "2026-27",
+  "data_nature": "synthetic POC data that mirrors the Panchatantra 2.0 (RDPR Karnataka) portal"
+ },
+ "rules": [
+  "Query only mart_* tables. Dates are text 'YYYY-MM-DD', fy is text like '2024-25', month_label is upper-case text like 'APR-2025'. Order months by month_id.",
+  "Geography is Zilla (district) > Taluk > GP (Gram Panchayat). GP-level facts carry gp_name, taluk_name and zilla_name already, so filter on them directly (zilla_name = 'Mysuru'). GP names repeat across taluks: for one GP always also filter taluk_name (or use gp_id).",
+  "State totals: SUM over all rows. Zilla or taluk totals: GROUP BY zilla_name / taluk_name over the GP-level fact. Never read a taluk-level fact when a GP-level one answers the question.",
+  "For a zilla or statewide total prefer the pre-summed mart_agg_taluk_* tables (SUM over their taluk rows, GROUP BY zilla_name for a zilla breakdown): they hold the same figures as the GP-level facts and answer in milliseconds. Use the GP-level mart_fact_gp_* tables for questions about individual GPs.",
+  "Money is in Indian rupees (INR). 1 lakh = 100,000 and 1 crore = 10,000,000. Return INR from SQL (ROUND(...,2)); do not divide by 1e7 unless asked for crore.",
+  "Revenue DCB (mart_fact_gp_dcb and the fee-type / property-type splits): arrears = previous FY's balance; total_demand = arrears + year_demand; balance = total_demand - total_collection - adjustments. year_demand, total_collection and adjustments are flows (can be added across FYs); arrears, total_demand and balance are positions (add across places within ONE FY, never across FYs).",
+  "Collection % = SUM(total_collection)*100.0/NULLIF(SUM(total_demand),0) over the rows in scope. Never AVG or SUM a *_pct column across rows (collection_pct, closure_pct, all_books_closed_pct, scheme_books_closed_pct); a stored pct may be read as-is only for one row of its own grain.",
+  "Book-closure %: Finance holds one row per scheme book. Year closure % = SUM(is_closed)*100.0/COUNT(*) over mart_fact_gp_year_closure rows in scope (filter scheme_name for one scheme); month closure % the same over mart_fact_gp_month_closure. 'GPs that closed ALL books for the year' is all_books_closed in mart_summary_gp_year (SUM over GPs). Not every GP keeps every scheme, so counts differ by scheme.",
+  "Scheme money (mart_fact_gp_scheme_financials): receipts and expenditure are flows (add over months); opening_balance and closing_balance are positions (add across GPs for ONE month, never across months; for a year take the March closing balance).",
+  "Two Finance Commission schemes have ended: Fourteen Finance Commission Grants has no rows after FY 2022-23 and Fifteen Finance Commission Grants none after FY 2025-26 (see active_to_fy in mart_dim_scheme). Do not expect them in FY 2026-27.",
+  "Day-book closure (mart_fact_taluk_daybook_closure) is taluk level: for one day use SUM(gps_closed)*100.0/SUM(total_gps); never AVG(closure_pct) and never add counts across days.",
+  "HRMS snapshots (mart_fact_gp_eo_approval, mart_fact_gp_er_registration) are one row per FY and GP taken on the snapshot_date: add across places within one FY, never across FYs. Presidents / vice-presidents are 1 or 0 per GP.",
+  "Staff headcount is in mart_fact_taluk_staff (taluk level, no names). Current (active) staff = SUM(staff_count) WHERE employment_status = 'Active'. There are no individual records: never answer about a named person, salary of a person, date of birth or the like.",
+  "Salary bills (mart_fact_taluk_salary_bills) exist at TALUK level only, never by GP, per month and staff type; months run Jan-2022 to Sep-2026 (Jan-Mar 2022 belong to FY 2021-22). If asked for salary bills by GP set answerable=false.",
+  "'Now', 'currently', 'latest', 'this year' mean the end of the data, 30-Sep-2026, so the current FY is 2026-27 (April-September 2026 only; its year-end book closure and year-end figures are not complete). 'Last year' / 'last FY' means FY 2025-26, the latest complete year.",
+  "Cross-module questions: use the mart_summary_*_year views (one row per place and FY, Finance + Revenue + HRMS already combined) or aggregate each fact to the same grain first. Never join two raw facts of different grain directly: rows multiply and totals are wrong.",
+  "Rankings: exclude NULLs, ORDER BY the measure and LIMIT. Name the entity and the measure in the SELECT. 'Top' means highest, 'worst' / 'lowest' means smallest value (for dues or pending counts the largest value is the worst).",
+  "Give EVERY selected column an alias. Use only columns listed in the schema; if the question needs data that is not listed, set answerable=false instead of guessing."
+ ],
+ "glossary": {
+  "DCB": {
+   "aliases": [
+    "dcb",
+    "demand collection balance",
+    "dcb register"
+   ],
+   "plain": "Demand, Collection and Balance register: for each GP and year, the tax and fee demand (arrears plus the year's demand), what was collected, adjustments, and the balance still to be collected."
+  },
+  "Arrears": {
+   "aliases": [
+    "arrears"
+   ],
+   "plain": "Dues carried in from earlier years: equal to the previous year's closing balance."
+  },
+  "Balance": {
+   "aliases": [
+    "outstanding balance",
+    "revenue balance"
+   ],
+   "plain": "What is still to be collected at the end of the year: total demand minus collection minus adjustments."
+  },
+  "Collection percentage": {
+   "aliases": [
+    "collection percentage",
+    "collection efficiency",
+    "collection %"
+   ],
+   "plain": "Amount collected as a percentage of the total demand."
+  },
+  "Gram Panchayat": {
+   "aliases": [
+    "gram panchayat",
+    "gp",
+    "grama panchayat",
+    "gram panchayath"
+   ],
+   "plain": "The village-level local body. Karnataka has 6,099 GPs in this data, grouped into 238 taluks and 31 zillas."
+  },
+  "Zilla": {
+   "aliases": [
+    "zilla",
+    "zilla panchayat",
+    "district"
+   ],
+   "plain": "The district level of Panchayat Raj. Karnataka has 31 zillas in this data."
+  },
+  "Taluk": {
+   "aliases": [
+    "taluk",
+    "taluka",
+    "taluk panchayat"
+   ],
+   "plain": "The block level between a GP and a zilla. There are 238 taluks in this data."
+  },
+  "Book closure": {
+   "aliases": [
+    "book closure",
+    "books closed",
+    "closure of books",
+    "account closure"
+   ],
+   "plain": "A GP closes the books of each scheme account at the end of a month or year after reconciling receipts and expenditure. The portal tracks which GPs have closed which books."
+  },
+  "Day book": {
+   "aliases": [
+    "day book",
+    "daybook",
+    "day book closure"
+   ],
+   "plain": "The daily cash book of a scheme account. Day-book closure counts the GPs of a taluk that have closed the day's book."
+  },
+  "Scheme": {
+   "aliases": [
+    "scheme account",
+    "scheme books",
+    "fund account"
+   ],
+   "plain": "A separate account a GP keeps for each funding source, such as Finance Commission grants, Swachh Bharat Mission or its own resources. There are 13 scheme accounts."
+  },
+  "RGSA": {
+   "aliases": [
+    "rgsa"
+   ],
+   "plain": "Rashtriya Gram Swaraj Abhiyan, the central scheme for strengthening Panchayat Raj institutions."
+  },
+  "SBM-G": {
+   "aliases": [
+    "sbm-g",
+    "sbm g",
+    "sbm"
+   ],
+   "plain": "Swachh Bharat Mission (Gramin), the sanitation scheme."
+  },
+  "ESCROW": {
+   "aliases": [
+    "escrow"
+   ],
+   "plain": "The statutory grants account (ESCROW) into which state statutory grants are paid."
+  },
+  "VWSC": {
+   "aliases": [
+    "vwsc"
+   ],
+   "plain": "Village Water Supply and Sanitation Committee account."
+  },
+  "ORF": {
+   "aliases": [
+    "orf",
+    "own resource funds"
+   ],
+   "plain": "Own Resource Funds: the GP's own tax and fee revenue account."
+  },
+  "EO": {
+   "aliases": [
+    "eo",
+    "executive officer"
+   ],
+   "plain": "Executive Officer of the Taluk Panchayat, who approves staff registered by GPs."
+  },
+  "PDO": {
+   "aliases": [
+    "pdo",
+    "panchayat development officer"
+   ],
+   "plain": "Panchayat Development Officer, the GP's chief executive; signs the GP's bills."
+  },
+  "Adhyaksha": {
+   "aliases": [
+    "adhyaksha",
+    "president"
+   ],
+   "plain": "The elected President of a GP. The vice-president is the Upadhyaksha."
+  },
+  "HRMS": {
+   "aliases": [
+    "hrms"
+   ],
+   "plain": "The Human Resource Management System for GP staff: registration, EO approval and monthly salary bills."
+  },
+  "Main bill": {
+   "aliases": [
+    "main bill",
+    "main salary bill"
+   ],
+   "plain": "The regular monthly salary bill of a GP. Auxiliary bills are supplementary ones. A bill goes from generated, to PDO signed, to President signed, to processed by the bank."
+  },
+  "ER": {
+   "aliases": [
+    "er registration",
+    "elected representative"
+   ],
+   "plain": "Elected Representative registration: the seats in a GP body and the members, president and vice-president registered."
+  },
+  "LGD": {
+   "aliases": [
+    "lgd",
+    "lgd code"
+   ],
+   "plain": "Local Government Directory code, the official numeric code of a zilla, taluk or GP."
+  },
+  "Lakh and crore": {
+   "aliases": [
+    "lakh",
+    "crore"
+   ],
+   "plain": "Indian number units: 1 lakh = 100,000 and 1 crore = 10,000,000 rupees."
+  }
+ },
+ "aliases": {
+  "zilla": {
+   "Bengaluru Urban": [
+    "bangalore urban",
+    "bengaluru",
+    "bangalore",
+    "blr urban"
+   ],
+   "Bengaluru Rural": [
+    "bangalore rural"
+   ],
+   "Bengaluru South (Ramanagara)": [
+    "ramanagara",
+    "ramanagar",
+    "bengaluru south",
+    "bangalore south"
+   ],
+   "Ballari": [
+    "bellary"
+   ],
+   "Belagavi": [
+    "belgaum"
+   ],
+   "Kalaburagi": [
+    "gulbarga"
+   ],
+   "Vijayapura": [
+    "bijapur"
+   ],
+   "Mysuru": [
+    "mysore"
+   ],
+   "Shivamogga": [
+    "shimoga"
+   ],
+   "Tumakuru": [
+    "tumkur"
+   ],
+   "Chikkamagaluru": [
+    "chikmagalur",
+    "chikkamagalur"
+   ],
+   "Dakshina Kannada": [
+    "mangalore",
+    "mangaluru",
+    "south canara",
+    "dk"
+   ],
+   "Uttara Kannada": [
+    "north canara",
+    "karwar"
+   ],
+   "Bagalkot": [
+    "bagalkote"
+   ],
+   "Davanagere": [
+    "davangere"
+   ],
+   "Chamarajanagar": [
+    "chamarajnagar",
+    "chamrajnagar"
+   ],
+   "Kodagu": [
+    "coorg"
+   ],
+   "Yadgir": [
+    "yadagiri",
+    "yadgiri"
+   ],
+   "Chikkaballapura": [
+    "chikballapur",
+    "chikkaballapur",
+    "chikballapura"
+   ],
+   "Vijayanagara": [
+    "hosapete",
+    "hospet"
+   ]
+  },
+  "scheme": {
+   "S01": [
+    "rgsa",
+    "rashtriya gram swaraj abhiyan"
+   ],
+   "S02": [
+    "library account",
+    "library fund"
+   ],
+   "S03": [
+    "gp staff salary",
+    "statutory grants (gp staff salary)",
+    "staff salary grant"
+   ],
+   "S04": [
+    "bapuji seva kendra",
+    "bsk"
+   ],
+   "S05": [
+    "sc/st funds",
+    "sc st funds",
+    "scst",
+    "sc/st fund 25%"
+   ],
+   "S06": [
+    "physically disabled",
+    "disabled fund",
+    "pwd fund",
+    "physically disabled 3%"
+   ],
+   "S07": [
+    "chief minister grama vikasa",
+    "cm grama vikasa",
+    "grama vikasa"
+   ],
+   "S08": [
+    "escrow",
+    "statutory grants (escrow)"
+   ],
+   "S09": [
+    "vwsc",
+    "village water supply and sanitation committee"
+   ],
+   "S10": [
+    "sbm-g",
+    "sbm g",
+    "swachh bharat",
+    "swachh bharat mission",
+    "sbm"
+   ],
+   "S11": [
+    "own resource",
+    "own resource funds",
+    "orf"
+   ],
+   "S12": [
+    "14th finance commission",
+    "fourteenth finance commission",
+    "14th fc",
+    "fourteen finance commission"
+   ],
+   "S13": [
+    "15th finance commission",
+    "fifteenth finance commission",
+    "15th fc",
+    "fifteen finance commission"
+   ]
+  },
+  "fee_type": {
+   "F1": [
+    "application fees",
+    "application fee"
+   ],
+   "F2": [
+    "property tax",
+    "property taxes",
+    "house tax"
+   ],
+   "F3": [
+    "other taxes",
+    "other tax"
+   ],
+   "F4": [
+    "fees",
+    "other fees"
+   ],
+   "F5": [
+    "mobile tower tax",
+    "tower tax",
+    "telecom tower tax"
+   ]
+  },
+  "property_category": {
+   "residential": [
+    "residential"
+   ],
+   "commercial": [
+    "commercial"
+   ],
+   "industrial": [
+    "industrial"
+   ],
+   "community": [
+    "community"
+   ],
+   "government": [
+    "government property",
+    "government properties"
+   ],
+   "religious": [
+    "religious"
+   ],
+   "non_residential": [
+    "non residential",
+    "non-residential"
+   ],
+   "renewable": [
+    "renewable"
+   ],
+   "agro_based_production_units": [
+    "agro based",
+    "agro-based"
+   ],
+   "commercial_cum_residential": [
+    "commercial cum residential"
+   ]
+  },
+  "staff_type": {
+   "1": [
+    "government staff",
+    "government employees"
+   ],
+   "2": [
+    "contractual",
+    "contract staff"
+   ],
+   "4": [
+    "gp staff",
+    "gp employees"
+   ],
+   "6": [
+    "outsourced"
+   ],
+   "7": [
+    "librarian",
+    "librarians"
+   ],
+   "8": [
+    "rehabilitation workers",
+    "rehabilitation worker"
+   ],
+   "9": [
+    "rgpr fellows",
+    "panchayat raj fellows",
+    "fellows"
+   ]
+  }
+ },
+ "common_columns": {
+  "fy": {
+   "unit": null,
+   "additive": null,
+   "doc": "Financial year label, text like '2024-25' (April to March). FY 2026-27 holds April-September 2026 only."
+  },
+  "fy_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Short financial-year key such as FY2425 (use fy instead)."
+  },
+  "month_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Calendar-month key YYYYMM, e.g. 202504 for April 2025; sorts chronologically."
+  },
+  "month_label": {
+   "unit": null,
+   "additive": null,
+   "doc": "Month as upper-case text 'APR-2025' (calendar month and year; April is the first month of the FY)."
+  },
+  "gp_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Gram Panchayat key G0001..G6099. GP names repeat across taluks; use gp_id or gp_name with taluk_name."
+  },
+  "gp_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Gram Panchayat name (not unique: 'Siddapura' exists in 9 taluks)."
+  },
+  "gp_lgd_code": {
+   "unit": null,
+   "additive": null,
+   "doc": "Official LGD code of the GP."
+  },
+  "taluk_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Taluk key T001..T238."
+  },
+  "taluk_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Taluk name (unique across the state)."
+  },
+  "taluk_lgd_code": {
+   "unit": null,
+   "additive": null,
+   "doc": "Official LGD code of the taluk."
+  },
+  "zilla_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Zilla (district) key Z01..Z31."
+  },
+  "zilla_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Zilla (district) name, e.g. 'Bagalkot', 'Bengaluru Urban'."
+  },
+  "zilla_lgd_code": {
+   "unit": null,
+   "additive": null,
+   "doc": "Official LGD code of the zilla."
+  },
+  "scheme_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Scheme (account book) key S01..S13."
+  },
+  "scheme_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Scheme / fund account the books are kept for, e.g. 'Fifteen Finance Commission Grants'."
+  },
+  "scheme_category": {
+   "unit": null,
+   "additive": null,
+   "doc": "Central, State, Earmarked, Finance Commission or Own."
+  },
+  "fee_type_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Revenue head key F1..F5."
+  },
+  "fee_type_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Revenue head: Application Fees, Property Taxes, Other Taxes, Fees, Mobile Tower Tax."
+  },
+  "property_type_id": {
+   "unit": null,
+   "additive": null,
+   "doc": "Property type key P01..P30."
+  },
+  "property_type_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Property type as in the demand statistics, e.g. 'Residential', 'Commercial'."
+  },
+  "report_category": {
+   "unit": null,
+   "additive": null,
+   "doc": "Grouped property category (residential, commercial, industrial, community, government ...)."
+  },
+  "staff_type_code": {
+   "unit": null,
+   "additive": null,
+   "doc": "Staff type code (1 Government, 2 Contractual, 4 GP Staff, 6 Outsourced, 7 Librarian, 8 Rehabilitation, 9 RGPR Fellows)."
+  },
+  "staff_type_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Staff type name, e.g. 'GP Staff', 'Librarian'."
+  },
+  "arrears": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Dues carried in from earlier years = the previous FY's closing balance. Cumulative: never add across FYs."
+  },
+  "year_demand": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Demand raised for this FY alone (current demand). A flow: can be added across FYs."
+  },
+  "total_demand": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "arrears + year_demand. Contains the carried-in arrears, so never add across FYs."
+  },
+  "total_collection": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Amount collected in the FY. A flow: can be added across FYs."
+  },
+  "adjustments": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Write-offs / adjustments in the FY. A flow."
+  },
+  "balance": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Outstanding at FY end = total_demand - total_collection - adjustments. A position: add across places within one FY, never across FYs."
+  },
+  "collection_amount": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Amount collected in the calendar month for the revenue head. A flow."
+  },
+  "opening_balance": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Scheme bank/cash balance at the start of the month. A position: never add across months."
+  },
+  "receipts": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Money received into the scheme account in the month. A flow."
+  },
+  "expenditure": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Money spent from the scheme account in the month. A flow."
+  },
+  "closing_balance": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Scheme balance at month end (= opening + receipts - expenditure). A position: never add across months."
+  },
+  "monthly_gross_salary_inr": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Total monthly gross salary of the staff in the group (sum over people in the row)."
+  },
+  "total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Number of GPs in scope (a stock, not a flow: do not add across days or months)."
+  },
+  "gps_closed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs whose book was closed on that day (cumulative to the day within the month)."
+  },
+  "gps_pending": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs whose book was still open on that day."
+  },
+  "closure_pct": {
+   "unit": "%",
+   "additive": false,
+   "doc": "gps_closed as a percentage of total_gps for that taluk, scheme and day. A ratio: never average across rows; use SUM(gps_closed)*100/SUM(total_gps) for one day."
+  },
+  "is_closed": {
+   "unit": "flag",
+   "additive": true,
+   "doc": "1 if the scheme's book was closed for the period, else 0. Closure % = SUM(is_closed)*100.0/COUNT(*)."
+  },
+  "closed_on": {
+   "unit": null,
+   "additive": null,
+   "doc": "Date the book was closed (text YYYY-MM-DD) or NULL if not closed."
+  },
+  "days_after_month_end": {
+   "unit": "days",
+   "additive": false,
+   "doc": "Days between month end and closure; NULL if not closed."
+  },
+  "number_of_properties": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Properties on the GP tax register (a stock, not summed across FYs)."
+  },
+  "staff_count": {
+   "unit": "count",
+   "additive": true,
+   "doc": "Number of staff in the row's group (all rows of a taluk sum to its total)."
+  },
+  "snapshot_date": {
+   "unit": null,
+   "additive": null,
+   "doc": "Date the HRMS figures were taken (31-Dec for past FYs, the data end for the current FY)."
+  },
+  "staff_registrations_sent_to_eo": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff registrations sent to the Executive Officer (snapshot for the FY)."
+  },
+  "staff_approved_by_eo": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff approved by the Executive Officer (snapshot for the FY)."
+  },
+  "staff_approval_pending_at_eo": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff registrations still waiting for EO approval (snapshot for the FY)."
+  },
+  "staff_registrations_rejected_by_eo": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff registrations rejected by the EO (snapshot for the FY)."
+  },
+  "staff_resent_for_approval_to_eo": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Rejected registrations sent again to the EO (snapshot for the FY)."
+  },
+  "total_seats": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Seats in the GP body (snapshot for the FY)."
+  },
+  "total_elected_members": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Elected members registered (snapshot for the FY)."
+  },
+  "total_adhyaksha_president": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Presidents (Adhyaksha) registered: 1 when the GP has one, 0 when none (snapshot)."
+  },
+  "total_upadhyaksha": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Vice-presidents (Upadhyaksha) registered: 1 or 0 (snapshot)."
+  },
+  "total_number_of_staff": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff on the payroll in the taluk for the staff type in the month."
+  },
+  "number_of_gps_generated_main_bill": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs that generated the main salary bill in the month."
+  },
+  "number_of_main_bill_generated": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Main salary bills generated."
+  },
+  "number_of_main_bill_pdo_signed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Main bills signed by the PDO."
+  },
+  "number_of_main_bill_president_signed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Main bills signed by the President."
+  },
+  "number_of_main_bill_processed_by_bank": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Main bills processed by the bank."
+  },
+  "number_of_auxiliary_bill_generated": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Auxiliary (supplementary) bills generated."
+  },
+  "number_of_auxiliary_bill_pdo_signed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Auxiliary bills signed by the PDO."
+  },
+  "number_of_auxiliary_bill_president_signed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Auxiliary bills signed by the President."
+  },
+  "number_of_auxiliary_bill_processed_by_bank": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Auxiliary bills processed by the bank."
+  },
+  "number_of_staff_salary_paid": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff whose salary was paid in the month."
+  },
+  "number_of_staff_salary_rejected_by_bank": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff whose salary the bank rejected in the month."
+  },
+  "designation_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Designation, e.g. 'Panchayat Development Officer', 'Bill Collector', 'Water Operator'."
+  },
+  "gender": {
+   "unit": null,
+   "additive": null,
+   "doc": "'Male' or 'Female'."
+  },
+  "employment_status": {
+   "unit": null,
+   "additive": null,
+   "doc": "'Active', 'Exited' or 'Not Active' (registered but never approved)."
+  },
+  "approval_status": {
+   "unit": null,
+   "additive": null,
+   "doc": "'Approved', 'Pending at EO' or 'Rejected'."
+  },
+  "taluk_assignment": {
+   "unit": null,
+   "additive": null,
+   "doc": "'portal' or 'reassigned' (GP moved to a different taluk from its LGD code)."
+  },
+  "size_class": {
+   "unit": null,
+   "additive": null,
+   "doc": "GP size class: Small, Medium or Large."
+  },
+  "performance_tier": {
+   "unit": null,
+   "additive": null,
+   "doc": "GP performance tier: Strong, Average or Lagging."
+  },
+  "total_taluks": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Number of taluks in the zilla."
+  },
+  "start_date": {
+   "unit": null,
+   "additive": null,
+   "doc": "First day of the financial year."
+  },
+  "end_date": {
+   "unit": null,
+   "additive": null,
+   "doc": "Last day of the financial year."
+  },
+  "data_through": {
+   "unit": null,
+   "additive": null,
+   "doc": "Last date for which data exists in that FY."
+  },
+  "is_current": {
+   "unit": null,
+   "additive": null,
+   "doc": "1 for the FY the data ends in."
+  },
+  "is_complete": {
+   "unit": null,
+   "additive": null,
+   "doc": "1 if the FY has all twelve months of data, 0 for the partial current FY."
+  },
+  "fy_month_no": {
+   "unit": null,
+   "additive": null,
+   "doc": "Fiscal month number: April = 1 ... March = 12."
+  },
+  "calendar_year": {
+   "unit": null,
+   "additive": null,
+   "doc": "Calendar year of the month."
+  },
+  "calendar_month_no": {
+   "unit": null,
+   "additive": null,
+   "doc": "Calendar month number: January = 1."
+  },
+  "month_name": {
+   "unit": null,
+   "additive": null,
+   "doc": "Month name abbreviation (Jan, Feb ...)."
+  },
+  "date": {
+   "unit": null,
+   "additive": null,
+   "doc": "Calendar date, text YYYY-MM-DD."
+  },
+  "active_from_fy": {
+   "unit": null,
+   "additive": null,
+   "doc": "First FY the scheme exists in."
+  },
+  "active_to_fy": {
+   "unit": null,
+   "additive": null,
+   "doc": "Last FY the scheme exists in (NULL = still active)."
+  },
+  "schemes_total": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Scheme books the GP keeps for the FY."
+  },
+  "schemes_closed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Of those, books closed for the year."
+  },
+  "all_books_closed": {
+   "unit": "flag",
+   "additive": false,
+   "doc": "1 if every scheme book of the GP was closed for the year, else 0."
+  },
+  "revenue_balance": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Revenue balance outstanding at FY end (same as balance)."
+  },
+  "collection_pct": {
+   "unit": "%",
+   "additive": false,
+   "doc": "total_collection as % of total_demand. A ratio: recompute as SUM(total_collection)*100.0/SUM(total_demand)."
+  },
+  "gps_all_books_closed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs that closed every scheme book for the FY."
+  },
+  "all_books_closed_pct": {
+   "unit": "%",
+   "additive": false,
+   "doc": "gps_all_books_closed as % of total_gps. A ratio."
+  },
+  "scheme_books_closed_pct": {
+   "unit": "%",
+   "additive": false,
+   "doc": "Closed scheme books as % of all scheme books in the place. A ratio."
+  },
+  "agro_based_production_units": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Properties of this kind (stock)."
+  },
+  "commercial": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Commercial properties (stock)."
+  },
+  "community": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Community properties (stock)."
+  },
+  "government": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Government properties (stock)."
+  },
+  "industrial": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Industrial properties (stock)."
+  },
+  "non_residential": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Non-residential properties (stock)."
+  },
+  "religious": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Religious properties (stock)."
+  },
+  "residential": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Residential properties (stock)."
+  },
+  "commercial_cum_residential": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Mixed commercial and residential properties (stock)."
+  },
+  "renewable": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Renewable-energy units (stock)."
+  },
+  "telecom_tower": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Telecom towers (stock)."
+  },
+  "other_unclassified": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Other / unclassified properties (stock)."
+  },
+  "month_books_closed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Month-end scheme books closed (GP x scheme) in the month. Month closure % = SUM(month_books_closed)*100.0/SUM(month_books) over ONE month or a GROUP BY month."
+  },
+  "month_books": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Month-end scheme books kept (GP x scheme) in the month: the denominator of month closure %."
+  },
+  "scheme_books_closed": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Year-end scheme books closed (GP x scheme) for the FY. Year closure % = SUM(scheme_books_closed)*100.0/SUM(scheme_books)."
+  },
+  "scheme_books": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Year-end scheme books kept (GP x scheme) for the FY: the denominator of year closure %."
+  }
+ },
+ "tables": {
+  "mart_dim_zilla": {
+   "group": "dimension",
+   "grain": "one row per zilla (district)",
+   "doc": "The 31 zillas with their taluk and GP counts."
+  },
+  "mart_dim_taluk": {
+   "group": "dimension",
+   "grain": "one row per taluk",
+   "doc": "The 238 taluks with their zilla and number of GPs."
+  },
+  "mart_dim_gp": {
+   "group": "dimension",
+   "grain": "one row per Gram Panchayat",
+   "doc": "The 6,099 GPs with taluk, zilla, size class and performance tier."
+  },
+  "mart_dim_fy": {
+   "group": "dimension",
+   "grain": "one row per financial year",
+   "doc": "FY 2021-22 to 2026-27; FY 2026-27 is partial (to 30-Sep-2026)."
+  },
+  "mart_dim_month": {
+   "group": "dimension",
+   "grain": "one row per calendar month",
+   "doc": "Months Jan-2022 to Mar-2027 with fiscal month number."
+  },
+  "mart_dim_scheme": {
+   "group": "dimension",
+   "grain": "one row per scheme",
+   "doc": "The 13 scheme account books of a GP."
+  },
+  "mart_dim_fee_type": {
+   "group": "dimension",
+   "grain": "one row per revenue head",
+   "doc": "Application Fees, Property Taxes, Other Taxes, Fees, Mobile Tower Tax."
+  },
+  "mart_dim_property_type": {
+   "group": "dimension",
+   "grain": "one row per property type",
+   "doc": "The 30 property types and their grouped category."
+  },
+  "mart_dim_staff_type": {
+   "group": "dimension",
+   "grain": "one row per staff type",
+   "doc": "The 7 HRMS staff types."
+  },
+  "mart_fact_gp_year_closure": {
+   "group": "finance",
+   "grain": "one row per FY x GP x scheme",
+   "doc": "Whether each scheme's books were closed for the year. Closure % = SUM(is_closed)*100.0/COUNT(*)."
+  },
+  "mart_fact_gp_month_closure": {
+   "group": "finance",
+   "grain": "one row per month x GP x scheme",
+   "doc": "Whether each scheme's books were closed for the month, and how many days after month end."
+  },
+  "mart_fact_gp_scheme_financials": {
+   "group": "finance",
+   "grain": "one row per month x GP x scheme",
+   "doc": "Opening balance, receipts, expenditure and closing balance of each scheme account."
+  },
+  "mart_fact_taluk_daybook_closure": {
+   "group": "finance",
+   "grain": "one row per day x taluk x scheme",
+   "doc": "Daily count of GPs in the taluk that have closed the day book. Taluk level."
+  },
+  "mart_fact_gp_dcb": {
+   "group": "revenue",
+   "grain": "one row per FY x GP",
+   "doc": "Demand, collection and balance (DCB register): arrears, year demand, total demand, collection, adjustments, balance."
+  },
+  "mart_fact_gp_fee_type": {
+   "group": "revenue",
+   "grain": "one row per FY x GP x revenue head",
+   "doc": "The DCB figures split by revenue head (taxes and fees)."
+  },
+  "mart_fact_gp_monthly_collection": {
+   "group": "revenue",
+   "grain": "one row per month x GP x revenue head",
+   "doc": "Collection by calendar month and revenue head."
+  },
+  "mart_fact_gp_demand_by_property_type": {
+   "group": "revenue",
+   "grain": "one row per FY x GP x property type",
+   "doc": "The DCB figures split by property type, with number of properties."
+  },
+  "mart_fact_gp_property_counts": {
+   "group": "revenue",
+   "grain": "one row per FY x GP",
+   "doc": "Number of properties in the GP by property category."
+  },
+  "mart_fact_gp_eo_approval": {
+   "group": "hrms",
+   "grain": "one row per FY x GP (snapshot)",
+   "doc": "Staff registrations sent to, approved, pending, rejected and resent to the Executive Officer."
+  },
+  "mart_fact_gp_er_registration": {
+   "group": "hrms",
+   "grain": "one row per FY x GP (snapshot)",
+   "doc": "Elected-representative registration: seats, elected members, presidents and vice-presidents."
+  },
+  "mart_fact_taluk_salary_bills": {
+   "group": "hrms",
+   "grain": "one row per month x taluk x staff type",
+   "doc": "The monthly salary-bill funnel (generated, signed, bank processed, paid, rejected). Taluk level only, never GP."
+  },
+  "mart_fact_taluk_staff": {
+   "group": "hrms",
+   "grain": "one row per taluk x staff type x designation x gender x employment status x approval status",
+   "doc": "Counts of GP staff (no names): the headcount and salary bill by designation as at the data end."
+  },
+  "mart_summary_gp_year": {
+   "group": "summary",
+   "grain": "one row per FY x GP",
+   "doc": "Finance + Revenue + HRMS in one row per GP and FY: books closed, demand, collection, EO approvals, seats."
+  },
+  "mart_summary_taluk_year": {
+   "group": "summary",
+   "grain": "one row per FY x taluk",
+   "doc": "The same cross-module summary per taluk and FY."
+  },
+  "mart_summary_zilla_year": {
+   "group": "summary",
+   "grain": "one row per FY x zilla",
+   "doc": "The same cross-module summary per zilla and FY."
+  },
+  "mart_summary_state_year": {
+   "group": "summary",
+   "grain": "one row per FY (whole Karnataka)",
+   "doc": "The same cross-module summary for the whole state per FY."
+  },
+  "mart_agg_taluk_month": {
+   "group": "summary",
+   "grain": "one row per calendar month x taluk",
+   "doc": "Pre-summed monthly figures per taluk across the three modules: revenue collected, scheme receipts / expenditure / closing balance, month-end books closed, and salary bills. A zilla or the state is a SUM over its taluks. Fastest table for monthly zilla or statewide questions."
+  },
+  "mart_agg_taluk_fy": {
+   "group": "summary",
+   "grain": "one row per FY x taluk",
+   "doc": "Pre-summed yearly figures per taluk across the three modules: DCB (arrears, demand, collection, adjustments, balance), properties, year-end books closed, GPs that closed every book, scheme receipts / expenditure, EO approvals and elected-member registration. A zilla or the state is a SUM over its taluks. Fastest table for zilla or statewide FY questions."
+  },
+  "mart_agg_taluk_fee_type_fy": {
+   "group": "revenue",
+   "grain": "one row per FY x taluk x revenue head",
+   "doc": "DCB per taluk and revenue head for each FY (sum of mart_fact_gp_fee_type). Use for zilla or statewide revenue-head questions."
+  },
+  "mart_agg_taluk_property_fy": {
+   "group": "revenue",
+   "grain": "one row per FY x taluk x property category",
+   "doc": "Properties, demand, collection and balance per taluk and property category for each FY (sum of mart_fact_gp_demand_by_property_type)."
+  },
+  "mart_agg_taluk_scheme_fy": {
+   "group": "finance",
+   "grain": "one row per FY x taluk x scheme",
+   "doc": "Per taluk and scheme account for each FY: year-end books closed, receipts and expenditure over the FY, and the closing balance at the last month of the FY."
+  }
+ },
+ "column_overrides": {
+  "mart_fact_taluk_staff.staff_count": {
+   "unit": "count",
+   "additive": true,
+   "doc": "People in the group. Add across rows for headcount; Active staff = employment_status = 'Active'."
+  },
+  "mart_summary_gp_year.total_demand": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "arrears + year_demand for the FY (contains carried-in arrears: never add across FYs)."
+  },
+  "mart_summary_taluk_year.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in the taluk."
+  },
+  "mart_summary_zilla_year.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in the zilla."
+  },
+  "mart_summary_state_year.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in Karnataka (6,099)."
+  },
+  "mart_dim_taluk.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in the taluk."
+  },
+  "mart_dim_zilla.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in the zilla."
+  },
+  "mart_fact_taluk_daybook_closure.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in the taluk that keep this scheme's book on that day (stock, never added across days)."
+  },
+  "mart_fact_gp_demand_by_property_type.number_of_properties": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Properties of this type in the GP (stock, not added across FYs)."
+  },
+  "mart_agg_taluk_scheme_fy.closing_balance": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Scheme balance at the last month of the FY (March, or September 2026 for the current FY). A position: add across places, never across FYs."
+  },
+  "mart_agg_taluk_fy.total_gps": {
+   "unit": "count",
+   "additive": false,
+   "doc": "GPs in the taluk (add across taluks within one FY)."
+  },
+  "mart_agg_taluk_fy.receipts": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Scheme receipts over the whole FY (all schemes). A flow."
+  },
+  "mart_agg_taluk_fy.expenditure": {
+   "unit": "INR",
+   "additive": true,
+   "doc": "Scheme expenditure over the whole FY (all schemes). A flow."
+  },
+  "mart_agg_taluk_month.closing_balance": {
+   "unit": "INR",
+   "additive": false,
+   "doc": "Scheme balance at the end of the month (all schemes). A position: never add across months."
+  },
+  "mart_agg_taluk_month.total_number_of_staff": {
+   "unit": "count",
+   "additive": false,
+   "doc": "Staff on the payroll in the month (all staff types). A snapshot: never add across months."
+  },
+  "mart_agg_taluk_month.number_of_staff_salary_paid": {
+   "unit": "count",
+   "additive": true,
+   "doc": "Staff paid in the month (all staff types)."
+  },
+  "mart_agg_taluk_month.number_of_staff_salary_rejected_by_bank": {
+   "unit": "count",
+   "additive": true,
+   "doc": "Salaries the bank rejected in the month (all staff types)."
+  }
+ },
+ "non_averageable_columns": [
+  "closure_pct",
+  "collection_pct",
+  "all_books_closed_pct",
+  "scheme_books_closed_pct"
+ ],
+ "non_summable_columns": [
+  "closure_pct",
+  "collection_pct",
+  "all_books_closed_pct",
+  "scheme_books_closed_pct"
+ ]
+}

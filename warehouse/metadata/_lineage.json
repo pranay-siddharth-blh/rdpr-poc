@@ -1,0 +1,1922 @@
+[
+ {
+  "source": "fa",
+  "source_table": "dim_date",
+  "column": "date",
+  "landed_in": "dim_date"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_date",
+  "column": "fy_label",
+  "landed_in": "dim_date"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_date",
+  "column": "is_working_day",
+  "landed_in": "dim_date"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_date",
+  "column": "month_name",
+  "landed_in": "UNMAPPED (in dim_month)"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_date",
+  "column": "month_no",
+  "landed_in": "UNMAPPED (replaced by month_id)"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_date",
+  "column": "weekday",
+  "landed_in": "dim_date"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_fy",
+  "column": "data_through",
+  "landed_in": "dim_fy"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_fy",
+  "column": "end_date",
+  "landed_in": "dim_fy"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_fy",
+  "column": "fy_id",
+  "landed_in": "dim_fy"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_fy",
+  "column": "fy_label",
+  "landed_in": "dim_fy"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_fy",
+  "column": "is_current",
+  "landed_in": "dim_fy"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_fy",
+  "column": "start_date",
+  "landed_in": "dim_fy"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "gp_id",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "gp_lgd_code",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "gp_name",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "performance_tier",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "size_class",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "taluk_assignment",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "taluk_id",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_gp",
+  "column": "zilla_id",
+  "landed_in": "dim_gp"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_report_type",
+  "column": "report_type_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_report_type",
+  "column": "report_type_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_scheme",
+  "column": "active_from_fy",
+  "landed_in": "dim_scheme"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_scheme",
+  "column": "active_to_fy",
+  "landed_in": "dim_scheme"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_scheme",
+  "column": "base_activity",
+  "landed_in": "UNMAPPED (generator-only column)"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_scheme",
+  "column": "scheme_category",
+  "landed_in": "dim_scheme"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_scheme",
+  "column": "scheme_id",
+  "landed_in": "dim_scheme"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_scheme",
+  "column": "scheme_name",
+  "landed_in": "dim_scheme"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "gps_source",
+  "landed_in": "dim_taluk"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "taluk_id",
+  "landed_in": "dim_taluk"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "taluk_lgd_code",
+  "landed_in": "dim_taluk"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "taluk_name",
+  "landed_in": "dim_taluk"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "total_gps",
+  "landed_in": "dim_taluk"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "zilla_id",
+  "landed_in": "dim_taluk"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_taluk",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_zilla",
+  "column": "zilla_id",
+  "landed_in": "dim_zilla"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_zilla",
+  "column": "zilla_lgd_code",
+  "landed_in": "dim_zilla"
+ },
+ {
+  "source": "fa",
+  "source_table": "dim_zilla",
+  "column": "zilla_name",
+  "landed_in": "dim_zilla"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "closure_pct",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "date",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "fy_label",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "gps_closed",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "gps_pending",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "scheme_id",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "total_gps",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_all",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED ('ALL schemes' day-book roll-up)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "closure_pct",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "date",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "fy_label",
+  "landed_in": "UNMAPPED (replaced by fy_id / month_id keys)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "gps_closed",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "gps_pending",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "scheme_id",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "taluk_id",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "total_gps",
+  "landed_in": "fact_fin_daybook_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_daybook_closure_scheme",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "closed_on",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "days_after_month_end",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "fy_label",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "gp_id",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "is_closed",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "month_no",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "scheme_id",
+  "landed_in": "fact_fin_gp_month_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_month_closure",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "closing_balance",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "expenditure",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "fy_label",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "gp_id",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "month_no",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "opening_balance",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "receipts",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "scheme_id",
+  "landed_in": "fact_fin_gp_scheme_financials"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_scheme_financials",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "closed_on",
+  "landed_in": "fact_fin_gp_year_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "fy_label",
+  "landed_in": "fact_fin_gp_year_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "gp_id",
+  "landed_in": "fact_fin_gp_year_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "is_closed",
+  "landed_in": "fact_fin_gp_year_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "scheme_id",
+  "landed_in": "fact_fin_gp_year_closure"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_gp_year_closure",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "closure_pct",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "fy_label",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "gps_closed",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "gps_pending",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "month_name",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "month_no",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "scheme_id",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "total_gps",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_month_closure",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (taluk roll-up with inconsistent ALL rows)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "closing_balance",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "expenditure",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "fy_label",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "month_no",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "opening_balance",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "receipts",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "scheme_id",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_scheme_financials",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_*)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "closure_pct",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "fy_label",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "gps_closed",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "gps_pending",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "scheme_id",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "total_gps",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "fa",
+  "source_table": "fin_year_closure",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (taluk roll-up, rebuilt in mart_agg_taluk_fy)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_designation",
+  "column": "designation_name",
+  "landed_in": "dim_designation"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_designation",
+  "column": "report_level",
+  "landed_in": "dim_designation"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_designation",
+  "column": "staff_type_name",
+  "landed_in": "dim_designation"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_fy",
+  "column": "data_through",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_fy",
+  "column": "end_date",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_fy",
+  "column": "fy_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_fy",
+  "column": "fy_label",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_fy",
+  "column": "is_current",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_fy",
+  "column": "start_date",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "gp_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "gp_lgd_code",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "gp_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "performance_tier",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "size_class",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "taluk_assignment",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_gp",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_staff_type",
+  "column": "staff_type_code",
+  "landed_in": "dim_staff_type"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_staff_type",
+  "column": "staff_type_name",
+  "landed_in": "dim_staff_type"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "gps_source",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "taluk_lgd_code",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "taluk_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "total_gps",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_taluk",
+  "column": "zilla_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_zilla",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_zilla",
+  "column": "zilla_lgd_code",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "dim_zilla",
+  "column": "zilla_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "calendar_year",
+  "landed_in": "UNMAPPED (in dim_month)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "fy_label",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "gp_id",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "gp_lgd_code",
+  "landed_in": "UNMAPPED (in dim_gp)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "gp_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "snapshot_date",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "staff_approval_pending_at_eo",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "staff_approved_by_eo",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "staff_registrations_rejected_by_eo",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "staff_registrations_sent_to_eo",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "staff_resent_for_approval_to_eo",
+  "landed_in": "fact_hr_eo_approval"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "taluk_lgd_code",
+  "landed_in": "UNMAPPED (in dim_taluk)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "taluk_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "zilla_lgd_code",
+  "landed_in": "UNMAPPED (in dim_zilla)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_eo_approval",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "calendar_year",
+  "landed_in": "UNMAPPED (in dim_month)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "fy_label",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "gp_id",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "gp_lgd_code",
+  "landed_in": "UNMAPPED (in dim_gp)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "gp_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "number_of_gp",
+  "landed_in": "UNMAPPED (repeats dim_taluk.total_gps)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "snapshot_date",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "taluk_lgd_code",
+  "landed_in": "UNMAPPED (in dim_taluk)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "taluk_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "total_adhyaksha_president",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "total_elected_members",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "total_seats",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "total_upadhyaksha",
+  "landed_in": "fact_hr_er_registration"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "zilla_lgd_code",
+  "landed_in": "UNMAPPED (in dim_zilla)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_er_registration",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_gp_crosswalk",
+  "column": "gp_id",
+  "landed_in": "NOT LOADED (audit trail of the HRMS rebuild)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_gp_crosswalk",
+  "column": "gp_lgd_code",
+  "landed_in": "NOT LOADED (audit trail of the HRMS rebuild)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_gp_crosswalk",
+  "column": "gp_name",
+  "landed_in": "NOT LOADED (audit trail of the HRMS rebuild)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_gp_crosswalk",
+  "column": "hrms_old_gp_code",
+  "landed_in": "NOT LOADED (audit trail of the HRMS rebuild)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_gp_crosswalk",
+  "column": "hrms_old_gp_name",
+  "landed_in": "NOT LOADED (audit trail of the HRMS rebuild)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_gp_crosswalk",
+  "column": "mapping_type",
+  "landed_in": "NOT LOADED (audit trail of the HRMS rebuild)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "calendar_month_no",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "calendar_year",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "fy_label",
+  "landed_in": "UNMAPPED (replaced by fy_id / month_id keys)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "fy_month_no",
+  "landed_in": "UNMAPPED (in dim_month)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "month_name",
+  "landed_in": "UNMAPPED (in dim_month)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_auxiliary_bill_generated",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_auxiliary_bill_pdo_signed",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_auxiliary_bill_president_signed",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_auxiliary_bill_processed_by_bank",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_gp",
+  "landed_in": "UNMAPPED (repeats dim_taluk.total_gps)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_gps_generated_main_bill",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_main_bill_generated",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_main_bill_pdo_signed",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_main_bill_president_signed",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_main_bill_processed_by_bank",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_staff_salary_paid",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "number_of_staff_salary_rejected_by_bank",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "staff_type_name",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "taluk_id",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "taluk_lgd_code",
+  "landed_in": "UNMAPPED (in dim_taluk)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "taluk_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "total_number_of_staff",
+  "landed_in": "fact_hr_salary_bills"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "zilla_lgd_code",
+  "landed_in": "UNMAPPED (in dim_zilla)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_monthly_salary",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "approval_status",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "date_of_birth",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "date_of_joining",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "designation",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "employment_status",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "eo_approved_date",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "eo_rejected_date",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "exit_date",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "gender",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "gp_id",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "gp_lgd_code",
+  "landed_in": "UNMAPPED (in dim_gp)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "gp_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "monthly_gross_salary_inr",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "registration_date",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "resent_to_eo_date",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "staff_id",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "staff_name",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "staff_type_code",
+  "landed_in": "fact_hr_staff"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "staff_type_name",
+  "landed_in": "UNMAPPED (replaced by staff_type_code)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "taluk_lgd_code",
+  "landed_in": "UNMAPPED (in dim_taluk)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "taluk_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "zilla_lgd_code",
+  "landed_in": "UNMAPPED (in dim_zilla)"
+ },
+ {
+  "source": "hr",
+  "source_table": "hr_staff_register",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fee_type",
+  "column": "fee_type_id",
+  "landed_in": "dim_fee_type"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fee_type",
+  "column": "fee_type_name",
+  "landed_in": "dim_fee_type"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fy",
+  "column": "data_through",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fy",
+  "column": "end_date",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fy",
+  "column": "fy_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fy",
+  "column": "fy_label",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fy",
+  "column": "is_current",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_fy",
+  "column": "start_date",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "gp_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "gp_lgd_code",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "gp_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "performance_tier",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "size_class",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "taluk_assignment",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_gp",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_property_type",
+  "column": "demand_multiplier",
+  "landed_in": "UNMAPPED (generator-only column)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_property_type",
+  "column": "property_type_id",
+  "landed_in": "dim_property_type"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_property_type",
+  "column": "property_type_name",
+  "landed_in": "dim_property_type"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_property_type",
+  "column": "report_category",
+  "landed_in": "dim_property_type"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_revenue_report_type",
+  "column": "report_type_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_revenue_report_type",
+  "column": "report_type_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "gps_source",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "taluk_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "taluk_lgd_code",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "taluk_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "total_gps",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_taluk",
+  "column": "zilla_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_zilla",
+  "column": "zilla_id",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_zilla",
+  "column": "zilla_lgd_code",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "dim_zilla",
+  "column": "zilla_name",
+  "landed_in": "NOT LOADED (duplicate of the shared master or a report catalogue)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "adjustments",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "arrears",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "balance",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "fy_label",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "gp_id",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "gp_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "taluk_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "total_collection",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "total_demand",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "year_demand",
+  "landed_in": "fact_rev_dcb_register"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_dcb_register",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "adjustments",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "arrears",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "balance",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "fy_label",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "gp_id",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "number_of_properties",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "property_type_id",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "total_collection",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "total_demand",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "year_demand",
+  "landed_in": "fact_rev_demand_statistics"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_demand_statistics",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_gp_monthly_collection",
+  "column": "collection_amount",
+  "landed_in": "fact_rev_gp_monthly_collection"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_gp_monthly_collection",
+  "column": "fee_type_id",
+  "landed_in": "fact_rev_gp_monthly_collection"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_gp_monthly_collection",
+  "column": "fy_label",
+  "landed_in": "fact_rev_gp_monthly_collection"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_gp_monthly_collection",
+  "column": "gp_id",
+  "landed_in": "fact_rev_gp_monthly_collection"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_gp_monthly_collection",
+  "column": "month_no",
+  "landed_in": "fact_rev_gp_monthly_collection"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_gp_monthly_collection",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "agro_based_production_units",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "commercial",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "commercial_cum_residential",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "community",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "fy_label",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "government",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "gp_id",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "gp_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "industrial",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "non_residential",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "number_of_properties",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "other_unclassified",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "religious",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "renewable",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "residential",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "taluk_name",
+  "landed_in": "UNMAPPED (name: facts store ids)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "telecom_tower",
+  "landed_in": "fact_rev_property_type_stats"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_property_type_stats",
+  "column": "zilla_name",
+  "landed_in": "UNMAPPED (name: facts store ids, names live in dimensions)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "adjustments",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "arrears",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "balance",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "fee_type_id",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "fy_label",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "gp_id",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "taluk_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.taluk_id: facts store gp_id only)"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "total_collection",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "total_demand",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "year_demand",
+  "landed_in": "fact_rev_taxes_fees"
+ },
+ {
+  "source": "rv",
+  "source_table": "rev_taxes_fees",
+  "column": "zilla_id",
+  "landed_in": "UNMAPPED (repeats dim_gp.zilla_id)"
+ }
+]

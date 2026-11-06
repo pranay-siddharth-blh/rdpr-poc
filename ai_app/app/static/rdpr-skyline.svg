@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 260" preserveAspectRatio="xMidYMax slice">
+  <!-- Rural Karnataka as a soft skyline behind AI mode: hills, a temple gopura, the Gram Panchayat office, village
+       houses, a water tank, coconut palms and fields. Very light tints of the RDPR wine (#7b1e34) and gold so text
+       on top stays readable. -->
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3e3e7"/><stop offset="1" stop-color="#f8eef0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- far hills and sun -->
+  <path d="M0 170 C120 120 220 135 330 110 C440 85 520 130 640 118 C760 106 850 70 980 92 C1100 112 1180 80 1300 96 C1420 112 1500 90 1600 104 L1600 260 L0 260Z" fill="#f2e6e9"/>
+  <circle cx="1235" cy="62" r="34" fill="#fde9c4" opacity=".85"/>
+
+  <!-- temple gopura -->
+  <g fill="#ead2d8">
+    <path d="M150 206 L150 150 L162 150 L166 128 L174 128 L177 108 L187 108 L190 88 L200 88 L203 108 L213 108 L216 128 L224 128 L228 150 L240 150 L240 206Z"/>
+  </g>
+  <g fill="#e2c3cb"><rect x="186" y="170" width="18" height="36" rx="9"/><rect x="192" y="76" width="6" height="12"/></g>
+
+  <!-- mid hills -->
+  <path d="M0 206 C160 186 260 196 420 184 C560 174 660 196 800 188 C960 178 1080 196 1240 186 C1400 176 1500 192 1600 186 L1600 260 L0 260Z" fill="#eedde1"/>
+
+  <!-- Gram Panchayat office: pediment, pillars, flag -->
+  <g fill="#e6cbd2">
+    <path d="M470 150 L560 122 L650 150Z"/>
+    <rect x="474" y="150" width="172" height="8"/>
+    <rect x="482" y="158" width="10" height="44"/><rect x="510" y="158" width="10" height="44"/>
+    <rect x="600" y="158" width="10" height="44"/><rect x="628" y="158" width="10" height="44"/>
+    <rect x="532" y="166" width="56" height="36"/>
+    <rect x="470" y="202" width="180" height="8"/>
+  </g>
+  <path d="M560 122 L560 84" stroke="#e2c3cb" stroke-width="2.5"/>
+  <path d="M561 85 L584 91 L561 98Z" fill="#f2d79c"/>
+
+  <!-- village houses with tiled roofs -->
+  <g fill="#ead5da">
+    <path d="M720 210 L720 178 L746 160 L772 178 L772 210Z"/><path d="M780 210 L780 184 L802 168 L824 184 L824 210Z"/>
+    <path d="M838 210 L838 176 L866 156 L894 176 L894 210Z"/>
+  </g>
+  <g fill="#e2c3cb"><rect x="740" y="190" width="12" height="20"/><rect x="796" y="194" width="10" height="16"/><rect x="860" y="188" width="12" height="22"/></g>
+
+  <!-- overhead water tank -->
+  <g stroke="#e3c8cf" stroke-width="3" fill="none"><path d="M1000 212 L1010 140 M1050 212 L1040 140 M1004 186 L1046 186 M1007 162 L1043 162"/></g>
+  <path d="M996 140 L1054 140 L1048 112 L1002 112Z" fill="#e6cbd2"/>
+  <path d="M1002 112 C1010 100 1040 100 1048 112Z" fill="#e2c3cb"/>
+
+  <!-- coconut palms -->
+  <g stroke="#e3c8cf" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M1130 214 C1126 180 1132 150 1142 124"/><path d="M1190 214 C1194 186 1190 160 1182 138"/>
+  </g>
+  <g fill="#ecd3d9">
+    <path d="M1142 124 C1120 116 1104 122 1094 134 C1114 126 1128 128 1142 124Z"/><path d="M1142 124 C1160 112 1178 114 1190 124 C1170 120 1156 122 1142 124Z"/>
+    <path d="M1142 124 C1138 104 1146 92 1158 86 C1150 100 1148 110 1142 124Z"/>
+    <path d="M1182 138 C1164 128 1150 132 1140 142 C1158 136 1170 136 1182 138Z"/><path d="M1182 138 C1196 126 1212 126 1224 136 C1206 132 1194 134 1182 138Z"/>
+  </g>
+
+  <!-- fields -->
+  <g fill="url(#field)" stroke="#ecd6dc" stroke-width="1">
+    <path d="M1290 222 L1330 204 L1420 204 L1380 222Z"/><path d="M1386 222 L1426 204 L1516 204 L1476 222Z"/>
+    <path d="M1270 240 L1310 222 L1400 222 L1360 240Z"/><path d="M1366 240 L1406 222 L1496 222 L1456 240Z"/>
+  </g>
+
+  <!-- near ground -->
+  <path d="M0 230 C200 214 380 226 560 218 C760 208 960 228 1160 220 C1360 212 1480 224 1600 218 L1600 260 L0 260Z" fill="#f0e2e5"/>
+</svg>

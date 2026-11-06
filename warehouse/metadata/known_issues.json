@@ -1,0 +1,111 @@
+{
+ "_purpose": "Known data issues: the caveat is attached to answers that read an affected table. {placeholders} are measured by the build.",
+ "issues": [
+  {
+   "id": "KI-01",
+   "title": "Synthetic data",
+   "status": "accepted",
+   "affects": [
+    "*"
+   ],
+   "caveat": "These figures come from a synthetic proof-of-concept dataset that mirrors the portal; they are not official records."
+  },
+  {
+   "id": "KI-02",
+   "title": "Partial current year",
+   "status": "accepted",
+   "affects": [
+    "mart_fact_gp_year_closure",
+    "mart_summary_gp_year",
+    "mart_summary_taluk_year",
+    "mart_summary_zilla_year",
+    "mart_summary_state_year",
+    "mart_agg_taluk_fy",
+    "mart_agg_taluk_scheme_fy"
+   ],
+   "caveat": "FY 2026-27 covers April to September 2026 only, and year-end book closure for it has not happened yet, so its year totals are part-year."
+  },
+  {
+   "id": "KI-03",
+   "title": "Finance daily vs monthly closure",
+   "status": "accepted",
+   "affects": [
+    "mart_fact_taluk_daybook_closure",
+    "mart_fact_gp_month_closure"
+   ],
+   "caveat": "Day-book closure (daily, by taluk) and month-end closure (by GP) come from separate tables and can disagree for the same taluk and month; the figure shown is from the table named in the answer."
+  },
+  {
+   "id": "KI-04",
+   "title": "Salary bills at taluk level only",
+   "status": "accepted",
+   "affects": [
+    "mart_fact_taluk_salary_bills",
+    "number_of_staff_salary_paid",
+    "number_of_staff_salary_rejected_by_bank",
+    "total_number_of_staff"
+   ],
+   "caveat": "Salary bills are held at taluk level only, so they cannot be broken down by GP."
+  },
+  {
+   "id": "KI-05",
+   "title": "Salary bills start Jan 2022",
+   "status": "accepted",
+   "affects": [
+    "mart_fact_taluk_salary_bills",
+    "number_of_staff_salary_paid",
+    "number_of_staff_salary_rejected_by_bank",
+    "total_number_of_staff"
+   ],
+   "caveat": "Salary-bill months run from January 2022 (FY 2021-22); Finance and Revenue start in April 2022."
+  },
+  {
+   "id": "KI-06",
+   "title": "Reassigned GPs",
+   "status": "accepted",
+   "affects": [
+    "mart_dim_gp"
+   ],
+   "caveat": "{reassigned_gps} GPs now sit in a different taluk from the one their LGD code shows (they were moved when taluks were reorganised); the taluk shown is the current one."
+  },
+  {
+   "id": "KI-07",
+   "title": "HRMS rebuilt on the master geography",
+   "status": "accepted",
+   "affects": [
+    "*"
+   ],
+   "caveat": "HR figures were rebuilt on the same GP master as Finance and Revenue; some GP staff profiles were copied from a neighbouring GP of the same taluk."
+  },
+  {
+   "id": "KI-08",
+   "title": "Staff never approved",
+   "status": "accepted",
+   "affects": [
+    "mart_fact_taluk_staff"
+   ],
+   "caveat": "{not_active_staff} registered staff are 'Not Active' because they were rejected by, or are still pending at, the EO; they are not counted as active staff."
+  },
+  {
+   "id": "KI-09",
+   "title": "Not every GP keeps every scheme",
+   "status": "accepted",
+   "affects": [
+    "mart_fact_gp_year_closure",
+    "mart_fact_gp_month_closure",
+    "mart_fact_gp_scheme_financials"
+   ],
+   "caveat": "Not every GP keeps every scheme account (for example Bapuji Seva Kendra exists in {bapuji_gps} GPs), so scheme-wise GP counts differ."
+  },
+  {
+   "id": "KI-10",
+   "title": "Demand statistics rescaled",
+   "status": "fixed",
+   "affects": [
+    "mart_fact_gp_demand_by_property_type",
+    "mart_agg_taluk_property_fy"
+   ],
+   "caveat": "Property-type figures were rescaled at build time so that, for every GP and year, they add up exactly to the DCB register."
+  }
+ ]
+}
